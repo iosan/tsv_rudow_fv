@@ -73,7 +73,8 @@ body {
     align-items: center;
     gap: 10px;
     flex: 1;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    overflow: visible;
     padding-bottom: 2px;
 }
 
@@ -569,8 +570,13 @@ footer a {
 
 @media (max-width: 640px) {
     .top-nav {
-        gap: 10px;
+        gap: 8px;
         padding: 10px 12px;
+        align-items: flex-start;
+    }
+
+    .top-nav ul {
+        gap: 8px;
     }
 
     .top-nav .logo img {
@@ -586,6 +592,12 @@ footer a {
     header {
         margin-top: 12px;
         padding: 18px 14px 8px;
+    }
+
+    header h1 {
+        font-size: clamp(1.2rem, 5.15vw, 1.62rem);
+        letter-spacing: -0.01em;
+        white-space: nowrap;
     }
 
     .content {

@@ -4,6 +4,20 @@ All notable changes to this project are documented here.
 
 The format is based on Keep a Changelog and the project follows Semantic Versioning.
 
+## [0.1.1] - 2026-08-24
+
+### Added
+- Automated league data feed integration for TSV Rudow I, II and III with generated JSON/JS artifacts.
+
+### Fixed
+- Corrected width calculation so full-row cards match the exact available parent width.
+- Fixed inconsistent glow rendering by anchoring card pseudo-elements to their own card containers.
+
+### Improved
+- Refined responsive card reflow behavior across Startseite and Aktuelles.
+- Harmonized parent/child glow hierarchy and introduced subtler green-red accent gradients.
+- Extended full-width content-box behavior to additional watermark subpages.
+
 ## [0.1.0] - 2026-08-24
 
 ### Added
