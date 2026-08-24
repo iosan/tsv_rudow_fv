@@ -1,0 +1,12 @@
+@startuml
+skinparam backgroundColor transparent
+title TSV Rudow Foerderverein - HTML Structure
+
+rectangle "Page" {
+  rectangle "head\nmeta + title + stylesheet"
+  rectangle "nav.top-nav"
+  rectangle "header"
+  rectangle "main.content"
+  rectangle "footer"
+}
+@enduml

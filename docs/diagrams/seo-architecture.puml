@@ -1,0 +1,30 @@
+@startuml
+skinparam backgroundColor transparent
+title TSV Rudow Foerderverein - SEO Architecture
+
+rectangle "Public (Indexed)" {
+  [index.html]
+  [philosophie.html]
+  [satzung.html]
+  [ansprechpartner.html]
+  [beitrittsformular.html]
+  [aktuelles.html]
+}
+
+rectangle "Excluded" {
+  [impressum.html]
+  [about.html]
+  [contact.html]
+  [transparenz.html]
+  [mitmachen.html]
+}
+
+[sitemap.xml] --> [index.html]
+[sitemap.xml] --> [philosophie.html]
+[sitemap.xml] --> [satzung.html]
+[sitemap.xml] --> [ansprechpartner.html]
+[sitemap.xml] --> [beitrittsformular.html]
+[sitemap.xml] --> [aktuelles.html]
+
+[robots.txt] --> [Excluded]
+@enduml

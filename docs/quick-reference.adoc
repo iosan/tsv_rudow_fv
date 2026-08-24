@@ -1,0 +1,31 @@
+= Quick Reference
+
+== Main Pages
+
+- `html/index.html`
+- `html/philosophie.html`
+- `html/satzung.html`
+- `html/ansprechpartner.html`
+- `html/beitrittsformular.html`
+- `html/aktuelles.html`
+
+== Core Files
+
+- `html/css/style.css`
+- `html/robots.txt`
+- `html/sitemap.xml`
+- `docs/content/foerderverein/`
+
+== Commands
+
+[source,bash]
+----
+# local preview
+cd html && python -m http.server 8000
+
+# docs + diagrams
+make docs
+
+# standards validation
+make validate-all
+----

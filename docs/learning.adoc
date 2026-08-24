@@ -1,0 +1,16 @@
+= Maintenance Learning Notes
+:toc: left
+
+== Recommended Skills for Maintainers
+
+- semantic HTML and accessibility basics
+- CSS layout systems (flexbox, grid)
+- content governance for static websites
+- SEO fundamentals (sitemap, robots, metadata)
+
+== Practical Routine
+
+. Review `docs/content/foerderverein/` before content edits.
+. Update one topic page at a time.
+. Validate links and navigation consistency.
+. Document major changes in `CHANGELOG.md`.

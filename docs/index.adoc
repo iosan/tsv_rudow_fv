@@ -1,0 +1,104 @@
+= TSV Rudow Foerderverein Website - Project Documentation
+v0.1.0, 2026-08-24
+:toc: left
+:toclevels: 3
+:sectnums:
+:icons: font
+:source-highlighter: highlightjs
+:imagesdir: images
+
+== Overview
+
+This repository contains a modern static website for the TSV Rudow Foerderverein.
+
+Primary navigation and content architecture are centered on five core pages:
+
+. Philosophie
+. Satzung
+. Ansprechpartner
+. Beitrittsformular
+. Aktuelles
+
+== Architecture Principles
+
+=== 1. Content-first information architecture
+
+The content model is topic-based and mirrors the migrated Foerderverein source material.
+
+=== 2. Lightweight technical stack
+
+- HTML5 for semantic structure
+- CSS3 for design system and responsiveness
+- no framework dependency
+
+=== 3. Maintainability
+
+- Shared navigation pattern across pages
+- Unified global stylesheet in `html/css/style.css`
+- Editorial source data in `docs/content/foerderverein/`
+
+=== 4. Accessibility and UX
+
+- keyboard-focus-visible navigation and gallery links
+- responsive layout behavior for desktop/tablet/mobile
+- reduced-motion support via `prefers-reduced-motion`
+
+== Repository Structure
+
+[source,text]
+----
+tsv_rudow_fv/
+|-- html/
+|   |-- index.html
+|   |-- philosophie.html
+|   |-- satzung.html
+|   |-- ansprechpartner.html
+|   |-- beitrittsformular.html
+|   |-- aktuelles.html
+|   |-- impressum.html
+|   |-- robots.txt
+|   |-- sitemap.xml
+|   `-- css/style.css
+|-- docs/
+|   |-- index.adoc
+|   |-- README.adoc
+|   |-- BUILD.adoc
+|   |-- content/foerderverein/
+|   `-- diagrams/
+|-- Makefile
+|-- README.md
+|-- CHANGELOG.md
+`-- CONTRIBUTING.md
+----
+
+== Content Workflow
+
+Recommended process for content edits:
+
+. Update structured source notes in `docs/content/foerderverein/`.
+. Apply approved copy changes to `html/*.html` topic pages.
+. Verify navigation consistency and metadata.
+. Run validation targets from the `Makefile`.
+
+== Validation and Build
+
+[source,bash]
+----
+make diagrams
+make pdfs
+make validate-all
+----
+
+== SEO and Indexing Strategy
+
+- Public pages are listed in `html/sitemap.xml`.
+- Non-public/support pages can be excluded with meta robots and/or `robots.txt` rules.
+- Legal page (`impressum.html`) is excluded from indexing.
+
+== Deployment
+
+The website is static and can be deployed by publishing the `html/` folder to any static host.
+
+== Notes
+
+The documentation set is intentionally domain-specific and focused on ongoing Foerderverein operations.

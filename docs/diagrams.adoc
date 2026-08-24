@@ -1,0 +1,33 @@
+= Architecture Diagrams
+:toc: left
+:imagesdir: images
+
+== Diagram Gallery
+
+- Project Structure
++
+image::project-structure.png[Project structure,align=center]
+
+- HTML Structure
++
+image::html-structure.png[HTML structure,align=center]
+
+- CSS Architecture
++
+image::css-architecture.png[CSS architecture,align=center]
+
+- Navigation Flow
++
+image::navigation-flow.png[Navigation flow,align=center]
+
+- SEO Architecture
++
+image::seo-architecture.png[SEO architecture,align=center]
+
+- Theme System
++
+image::theme-system.png[Theme system,align=center]
+
+- Deployment Workflow
++
+image::deployment-workflow.png[Deployment workflow,align=center]

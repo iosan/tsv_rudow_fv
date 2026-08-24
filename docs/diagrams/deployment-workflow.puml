@@ -1,0 +1,9 @@
+@startuml
+skinparam backgroundColor transparent
+title TSV Rudow Foerderverein - Deployment Workflow
+
+[Edit content/code] --> [Validate locally]
+[Validate locally] --> [Commit changes]
+[Commit changes] --> [Publish html/ to static host]
+[Publish html/ to static host] --> [Production checks]
+@enduml

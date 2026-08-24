@@ -1,0 +1,29 @@
+= Theming Guide
+:toc: left
+
+== Design Tokens
+
+Core tokens are defined in `html/css/style.css` under `:root`.
+
+[source,css]
+----
+:root {
+  --green: #00a984;
+  --red: #e30612;
+  --ink: #152321;
+  --paper: #fcfffe;
+}
+----
+
+== Theming Strategy
+
+- keep brand accents in green/red
+- use neutral surfaces for readability
+- preserve contrast for accessibility
+- avoid one-off inline color styles
+
+== Safe Customization
+
+. Change token values first.
+. Verify hover/focus states.
+. Test desktop/tablet/mobile breakpoints.

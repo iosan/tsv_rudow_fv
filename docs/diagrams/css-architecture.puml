@@ -1,0 +1,20 @@
+@startuml
+skinparam backgroundColor transparent
+title TSV Rudow Foerderverein - CSS Architecture
+
+package "style.css" {
+  rectangle "Design Tokens (:root)"
+  rectangle "Base/Reset"
+  rectangle "Navigation"
+  rectangle "Content Cards"
+  rectangle "Gallery"
+  rectangle "Watermark Layout"
+  rectangle "Responsive Rules"
+  rectangle "Reduced Motion"
+}
+
+"Design Tokens (:root)" --> "Navigation"
+"Design Tokens (:root)" --> "Content Cards"
+"Design Tokens (:root)" --> "Gallery"
+"Design Tokens (:root)" --> "Watermark Layout"
+@enduml

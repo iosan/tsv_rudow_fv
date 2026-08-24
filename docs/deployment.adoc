@@ -1,0 +1,29 @@
+= Deployment Guide
+:toc: left
+
+== Static Deployment Model
+
+Publish the `html/` directory to any static host.
+
+== Recommended Hosts
+
+- GitHub Pages
+- Netlify
+- Vercel
+- traditional Apache/Nginx hosting
+
+== Minimal Checklist
+
+. Confirm legal placeholders in `html/impressum.html` are replaced.
+. Update `html/sitemap.xml` with production domain.
+. Validate `html/robots.txt` directives.
+. Run `make validate-all`.
+. Verify all five primary navigation pages.
+
+== GitHub Pages Example
+
+[source,bash]
+----
+# publish html folder to gh-pages branch
+ git subtree push --prefix html origin gh-pages
+----

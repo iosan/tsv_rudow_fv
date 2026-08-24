@@ -1,0 +1,38 @@
+= Build and Validation
+:toc: left
+
+== Purpose
+
+This project is a static website. Build tasks focus on documentation rendering and standards validation.
+
+== Prerequisites
+
+- `make`
+- `plantuml` + Graphviz (for diagrams)
+- `asciidoctor-pdf` (for PDF docs)
+- network access for W3C validators
+
+== Common Commands
+
+[source,bash]
+----
+make diagrams
+make pdfs
+make docs
+make validate-html
+make validate-css
+make validate-all
+----
+
+== Docker Alternatives
+
+[source,bash]
+----
+make docker-diagrams
+make docker-pdfs
+----
+
+== Notes
+
+- Validation targets use online W3C services.
+- Regenerate PDFs after editing `.adoc` files.

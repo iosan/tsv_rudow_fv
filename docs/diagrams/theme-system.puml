@@ -1,0 +1,24 @@
+@startuml
+skinparam backgroundColor transparent
+title TSV Rudow Foerderverein - Theme System
+
+rectangle ":root tokens" as root
+rectangle "--green" as green
+rectangle "--red" as red
+rectangle "--ink" as ink
+rectangle "--paper" as paper
+rectangle "--line" as lineToken
+rectangle "components\n(nav, cards, gallery, footer)" as comps
+
+root --> green
+root --> red
+root --> ink
+root --> paper
+root --> lineToken
+
+green --> comps
+red --> comps
+ink --> comps
+paper --> comps
+lineToken --> comps
+@enduml

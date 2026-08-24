@@ -1,0 +1,38 @@
+= TSV Rudow Foerderverein Documentation
+:toc: left
+
+== Documentation Index
+
+This folder contains technical and editorial documentation for the TSV Rudow Foerderverein website.
+
+=== Core Docs
+
+* link:index.adoc[Project Documentation]
+* link:BUILD.adoc[Build and Validation]
+* link:theming.adoc[Theming Notes]
+* link:deployment.adoc[Deployment Guide]
+* link:responsive-design.adoc[Responsive Design]
+
+=== Editorial Source Content
+
+* link:content/foerderverein/README.md[Foerderverein Content Source]
+
+Use the files in `docs/content/foerderverein/` as the canonical source for migrated legacy content and editorial updates.
+
+=== Diagrams
+
+PlantUML sources: `docs/diagrams/`
+
+Rendered diagrams: `docs/images/`
+
+=== Build Shortcuts
+
+- `make diagrams` renders PlantUML to PNG.
+- `make pdfs` builds PDF documents.
+- `make docs` runs both.
+
+=== Repository Links
+
+* link:../README.md[Root README]
+* link:../CHANGELOG.md[Changelog]
+* link:../CONTRIBUTING.md[Contributing]

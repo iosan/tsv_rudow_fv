@@ -1,0 +1,16 @@
+@startuml
+skinparam backgroundColor transparent
+title TSV Rudow Foerderverein - Navigation Flow
+
+[Startseite] --> [Philosophie]
+[Startseite] --> [Satzung]
+[Startseite] --> [Ansprechpartner]
+[Startseite] --> [Beitrittsformular]
+[Startseite] --> [Aktuelles]
+
+[Philosophie] --> [Startseite]
+[Satzung] --> [Startseite]
+[Ansprechpartner] --> [Startseite]
+[Beitrittsformular] --> [Startseite]
+[Aktuelles] --> [Startseite]
+@enduml

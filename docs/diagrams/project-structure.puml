@@ -1,0 +1,28 @@
+@startuml
+skinparam backgroundColor transparent
+skinparam packageStyle rectangle
+
+title TSV Rudow Foerderverein - Project Structure
+
+folder "Repository" {
+  folder "html" {
+    file "index.html"
+    file "philosophie.html"
+    file "satzung.html"
+    file "ansprechpartner.html"
+    file "beitrittsformular.html"
+    file "aktuelles.html"
+    file "impressum.html"
+    folder "css" {
+      file "style.css"
+    }
+    folder "images"
+  }
+  folder "docs" {
+    file "index.adoc"
+    file "README.adoc"
+    folder "content/foerderverein"
+    folder "diagrams"
+  }
+}
+@enduml

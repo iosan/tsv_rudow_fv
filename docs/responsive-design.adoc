@@ -1,0 +1,22 @@
+= Responsive Design
+:toc: left
+
+== Breakpoints
+
+- Desktop: default styles
+- Tablet: `max-width: 920px`
+- Mobile: `max-width: 640px`
+
+== Responsive Principles
+
+- horizontal navigation remains usable via scroll on small widths
+- gallery collapses from multi-column to single-column
+- content cards maintain readable padding and typography
+- data modules stack vertically on smaller screens
+
+== Verification Checklist
+
+. Check top navigation wraps/scrolls correctly on mobile.
+. Confirm topic image cards remain legible.
+. Confirm table modules are readable on mobile.
+. Confirm touch targets and focus styles remain visible.

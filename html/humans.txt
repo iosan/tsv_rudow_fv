@@ -1,0 +1,23 @@
+/* TEAM */
+Maintainer: TSV Rudow Foerderverein Web Team
+Repository: https://github.com/iosan/webup
+
+/* SITE */
+Last update: 2026-08-24
+Version: 0.1.0
+Standards: HTML5, CSS3, WCAG-aware accessibility
+Components: Semantic HTML, token-based CSS design system, responsive layout, SEO basics
+Languages: HTML, CSS, AsciiDoc, Markdown
+
+/* CONTENT MODEL */
+Primary navigation topics:
+- Philosophie
+- Satzung
+- Ansprechpartner
+- Beitrittsformular
+- Aktuelles
+
+Source content notes live in docs/content/foerderverein/.
+
+/* NOTE */
+Validate legal details in impressum.html before production release.
