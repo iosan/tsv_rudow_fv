@@ -52,4 +52,4 @@ Use clear, action-oriented messages, for example:
 
 ## Release Baseline
 
-Current baseline release: 0.1.0
+Current baseline release: 0.1.1

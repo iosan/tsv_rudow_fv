@@ -84,6 +84,33 @@ make docs
 make validate-all
 ```
 
+## Live League Data (TSV Rudow I/II/III)
+
+The homepage can load generated league metadata from:
+
+- `html/data/league-data.json`
+
+Generate/update this file with:
+
+```bash
+make league-data
+```
+
+or directly:
+
+```bash
+python3 scripts/fetch_league_data.py
+```
+
+What is included:
+
+- standings rows for TSV Rudow I, II, III
+- latest and next match metadata (date, opponent, link)
+
+Note:
+
+- Public score digits on fussball.de are obfuscated in HTML. The generated feed keeps reliable metadata and deep links to official match pages.
+
 ## Content Governance
 
 Canonical migrated source content is stored in:

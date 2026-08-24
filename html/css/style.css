@@ -73,7 +73,8 @@ body {
     align-items: center;
     gap: 10px;
     flex: 1;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    overflow: visible;
     padding-bottom: 2px;
 }
 
@@ -149,23 +150,72 @@ header::after {
     border-radius: var(--radius);
     box-shadow: var(--shadow-soft);
     padding: clamp(16px, 2.4vw, 28px);
-}
-
-.intro-panel {
     position: relative;
     overflow: hidden;
+    isolation: isolate;
 }
 
-.intro-panel::before {
+.content > section::before,
+.content > article::before,
+.content-with-watermark > article::before {
     content: "";
     position: absolute;
-    right: -40px;
-    top: -40px;
-    width: 170px;
-    height: 170px;
+    right: -65px;
+    top: -65px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 169, 132, 0.14) 0%, rgba(0, 169, 132, 0) 70%);
+    background:
+        radial-gradient(circle at 34% 36%, rgba(0, 169, 132, 0.15) 0%, rgba(0, 169, 132, 0.08) 28%, rgba(0, 169, 132, 0) 78%),
+        radial-gradient(circle at 6% 50%, rgba(0, 169, 132, 0.045) 0%, rgba(0, 169, 132, 0.02) 30%, rgba(0, 169, 132, 0) 82%),
+        radial-gradient(circle at 92% 18%, rgba(227, 6, 18, 0.18) 0%, rgba(227, 6, 18, 0) 62%);
     pointer-events: none;
+    filter: blur(1px);
+    z-index: 0;
+}
+
+.update-card::before {
+    content: "";
+    position: absolute;
+    right: -52px;
+    top: -52px;
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 34% 36%, rgba(0, 169, 132, 0.11) 0%, rgba(0, 169, 132, 0.05) 30%, rgba(0, 169, 132, 0) 80%),
+        radial-gradient(circle at 6% 50%, rgba(0, 169, 132, 0.03) 0%, rgba(0, 169, 132, 0.014) 32%, rgba(0, 169, 132, 0) 84%),
+        radial-gradient(circle at 90% 18%, rgba(227, 6, 18, 0.13) 0%, rgba(227, 6, 18, 0) 60%);
+    pointer-events: none;
+    filter: blur(2.5px);
+    z-index: 0;
+}
+
+.content > section > *,
+.content > article > *,
+.content-with-watermark > article > *,
+.update-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.content > section.image-gallery::before {
+    content: none;
+}
+
+.content > section.team-updates::before {
+    content: none;
+}
+
+/* Parent boxes with nested box layouts should not render their own glow. */
+.content > section:has(.update-grid)::before,
+.content > article:has(.update-grid)::before,
+.content > section:has(section)::before,
+.content > article:has(section)::before,
+.content-with-watermark > article:has(.update-grid)::before,
+.content-with-watermark > article:has(section)::before,
+.content-with-watermark > article:has(article)::before {
+    content: none;
 }
 
 .content h2 {
@@ -285,27 +335,66 @@ header::after {
 
 .team-updates {
     margin-top: 2px;
+    min-width: 0;
+    container-type: inline-size;
 }
 
 .update-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(28rem, 100%), 1fr));
     gap: 14px;
     margin-top: 12px;
+    align-items: stretch;
+    justify-items: stretch;
+}
+
+.update-grid-trio {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.update-grid-paired {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .update-card {
+    position: relative;
+    isolation: isolate;
     border: 1px solid var(--line);
     border-radius: 12px;
     background: #fff;
     padding: 14px;
     box-shadow: var(--shadow-soft);
+    min-width: 0;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.update-card-wide {
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+.update-card-wide::before {
+    width: 220px;
+    height: 220px;
+    right: -65px;
+    top: -65px;
+}
+
+/* If a responsive wrap leaves one trailing card alone, let it use full row width. */
+.update-grid-trio > .update-card:last-child:nth-child(odd):not(.update-card-wide),
+.update-grid-paired > .update-card:last-child:nth-child(odd):not(.update-card-wide) {
+    grid-column: 1 / -1;
+    width: 100%;
 }
 
 .data-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9rem;
+    table-layout: fixed;
 }
 
 .data-table th,
@@ -313,11 +402,21 @@ header::after {
     text-align: left;
     padding: 8px 6px;
     border-bottom: 1px solid #eaf2ef;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .data-table th {
     color: var(--ink);
     font-weight: 600;
+}
+
+.data-table a,
+.results-list a {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }
 
 .results-list {
@@ -329,6 +428,7 @@ header::after {
 .results-list li {
     padding: 8px 0;
     border-bottom: 1px solid #eaf2ef;
+    overflow-wrap: anywhere;
 }
 
 .small-note {
@@ -357,7 +457,7 @@ header::after {
     backdrop-filter: saturate(105%);
 }
 
-.content-with-watermark article {
+.content-with-watermark > article {
     position: relative;
     z-index: 1;
     max-width: 780px;
@@ -368,8 +468,18 @@ header::after {
     margin-bottom: 14px;
 }
 
-.content-with-watermark article:last-child {
+.content-with-watermark > article:last-child {
     margin-bottom: 0;
+}
+
+.content-with-watermark .wide-data-article {
+    max-width: none;
+    width: 100%;
+}
+
+.content-with-watermark.content-with-watermark-full > article {
+    max-width: none;
+    width: 100%;
 }
 
 .content-with-watermark h2,
@@ -426,14 +536,47 @@ footer a {
     }
 
     .update-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    }
+}
+
+@container (max-width: 940px) {
+    .update-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
+    }
+
+    .update-grid-trio {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .update-grid-paired {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@container (max-width: 720px) {
+    .update-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .update-grid-trio {
+        grid-template-columns: 1fr;
+    }
+
+    .update-grid-paired {
         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 640px) {
     .top-nav {
-        gap: 10px;
+        gap: 8px;
         padding: 10px 12px;
+        align-items: flex-start;
+    }
+
+    .top-nav ul {
+        gap: 8px;
     }
 
     .top-nav .logo img {
@@ -449,6 +592,12 @@ footer a {
     header {
         margin-top: 12px;
         padding: 18px 14px 8px;
+    }
+
+    header h1 {
+        font-size: clamp(1.2rem, 5.15vw, 1.62rem);
+        letter-spacing: -0.01em;
+        white-space: nowrap;
     }
 
     .content {

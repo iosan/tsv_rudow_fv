@@ -1,6 +1,8 @@
 = TSV Rudow Foerderverein Documentation
 :toc: left
 
+Current docs baseline: v0.1.1 (2026-08-24)
+
 == Documentation Index
 
 This folder contains technical and editorial documentation for the TSV Rudow Foerderverein website.

@@ -1,10 +1,10 @@
 /* TEAM */
 Maintainer: TSV Rudow Foerderverein Web Team
-Repository: https://github.com/iosan/webup
+Repository: https://github.com/iosan/tsv_rudow_fv
 
 /* SITE */
 Last update: 2026-08-24
-Version: 0.1.0
+Version: 0.1.1
 Standards: HTML5, CSS3, WCAG-aware accessibility
 Components: Semantic HTML, token-based CSS design system, responsive layout, SEO basics
 Languages: HTML, CSS, AsciiDoc, Markdown

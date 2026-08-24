@@ -22,6 +22,7 @@ DIAGRAM_PNGS := $(patsubst $(DIAGRAMS_SRC_DIR)/%.puml,$(DIAGRAMS_OUT_DIR)/%.png,
 
 .PHONY: all docs diagrams pdfs clean clean-diagrams clean-pdfs docker-diagrams docker-pdfs
 .PHONY: validate-html validate-css validate-all
+.PHONY: league-data
 
 all: docs
 
@@ -85,3 +86,8 @@ validate-css:
 	curl -sG --data-urlencode "text=$(shell cat html/css/style.css)" --data-urlencode "profile=css3svg" --data-urlencode "output=gnu" https://jigsaw.w3.org/css-validator/validator | sed 's/^/   /'
 
 validate-all: validate-html validate-css
+
+# Fetch TSV Rudow Herren I/II/III standings and match metadata to html/data/league-data.json
+league-data:
+	@echo "[Live Data] Fetching TSV Rudow league data"
+	@python3 scripts/fetch_league_data.py
