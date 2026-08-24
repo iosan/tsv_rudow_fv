@@ -93,11 +93,11 @@
 
         <section class="team-updates" aria-label="Aktuelles: Tabellen, Ergebnisse und Spieltage">
             <h2>Aktuelles</h2>
-            <p>Der Förderverein bleibt im Mittelpunkt. Ergänzend zeigen wir hier aktuelle Sportdaten für TSV Rudow I, II und III als strukturierte Platzhalter.</p>
+            <p>Der Förderverein bleibt im Mittelpunkt. Ergänzend werden hier Live-Sportdaten für TSV Rudow I, II und III aus html/data/league-data.json geladen.</p>
 
-            <div class="update-grid">
+            <div class="update-grid update-grid-trio">
                 <article class="update-card">
-                    <h3>Tabellenstand (Platzhalter)</h3>
+                    <h3>Tabellenstand</h3>
                     <table class="data-table">
                         <thead>
                             <tr>
@@ -107,7 +107,7 @@
                                 <th>Punkte</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="live-table-body">
                             <tr>
                                 <td>TSV Rudow I</td>
                                 <td>4</td>
@@ -131,17 +131,17 @@
                 </article>
 
                 <article class="update-card">
-                    <h3>Letzte Ergebnisse (Platzhalter)</h3>
-                    <ul class="results-list">
+                    <h3>Letzte Ergebnisse</h3>
+                    <ul class="results-list" id="live-results-list">
                         <li><strong>TSV Rudow I</strong>: 2:1 gegen SC Beispielstadt</li>
                         <li><strong>TSV Rudow II</strong>: 1:1 gegen FC Musterdorf</li>
                         <li><strong>TSV Rudow III</strong>: 0:2 gegen SV Testfeld</li>
                     </ul>
-                    <p class="small-note">Tipp: Diese Liste kann später automatisch über eine API oder einen Verbands-Feed aktualisiert werden.</p>
+                    <p class="small-note" id="live-data-status">Live-Daten werden bei Verfuegbarkeit automatisch geladen.</p>
                 </article>
 
-                <article class="update-card">
-                    <h3>Kommende Spieltage (Platzhalter)</h3>
+                <article class="update-card update-card-wide">
+                    <h3>Kommende Spieltage</h3>
                     <table class="data-table">
                         <thead>
                             <tr>
@@ -149,26 +149,30 @@
                                 <th>Team</th>
                                 <th>Begegnung</th>
                                 <th>Ort</th>
+                                <th>Details</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="live-upcoming-body">
                             <tr>
                                 <td>06.09.2026</td>
                                 <td>TSV Rudow I</td>
                                 <td>TSV Rudow I vs. BSC Beispiel</td>
                                 <td>Heim</td>
+                                <td>-</td>
                             </tr>
                             <tr>
                                 <td>07.09.2026</td>
                                 <td>TSV Rudow II</td>
                                 <td>FC Vorstadt vs. TSV Rudow II</td>
                                 <td>Auswärts</td>
+                                <td>-</td>
                             </tr>
                             <tr>
                                 <td>08.09.2026</td>
                                 <td>TSV Rudow III</td>
                                 <td>TSV Rudow III vs. SG Süd</td>
                                 <td>Heim</td>
+                                <td>-</td>
                             </tr>
                         </tbody>
                     </table>
@@ -189,5 +193,7 @@
             </a>
         </div>
     </footer>
+    <script src="data/league-data.js"></script>
+    <script src="js/live-data.js"></script>
 </body>
 </html>
