@@ -15,8 +15,10 @@ This repository is a content-first static website. Contributions should preserve
 
 1. Sync your local main branch.
 2. Make focused changes.
-3. Validate locally.
-4. Open a pull request with a concise summary.
+3. Install local validators with `npm install`.
+4. Validate locally with `make validate-content`.
+5. Install the repo hooks for this clone with `make hooks-install`.
+6. Open a pull request with a concise summary.
 
 ## Development Rules
 
@@ -28,6 +30,9 @@ This repository is a content-first static website. Contributions should preserve
 ## Validation Checklist
 
 - Test desktop, tablet, mobile layouts.
+- Run `npm install` once in a fresh clone.
+- Install `shellcheck` for shell script validation.
+- Run `make validate-content` before committing; it also checks staged whitespace.
 - Run `make diagrams` after changing .puml files.
 - Run `make pdfs` after changing .adoc docs.
 - Run `make validate-all`.
@@ -52,4 +57,4 @@ Use clear, action-oriented messages, for example:
 
 ## Release Baseline
 
-Current baseline release: 0.1.1
+Current baseline release: 0.1.2

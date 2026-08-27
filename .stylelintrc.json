@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "block-no-empty": true,
+    "color-no-invalid-hex": true,
+    "comment-no-empty": true,
+    "declaration-block-no-duplicate-properties": true,
+    "media-feature-name-no-unknown": true,
+    "no-invalid-double-slash-comments": true,
+    "property-no-unknown": true,
+    "selector-pseudo-class-no-unknown": [true, {
+      "ignorePseudoClasses": ["has", "focus-visible"]
+    }],
+    "selector-pseudo-element-no-unknown": true
+  }
+}

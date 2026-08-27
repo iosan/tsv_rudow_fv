@@ -1,5 +1,5 @@
 window.__LEAGUE_DATA__ = {
-  "generatedAt": "2026-08-24T20:08:07.660596+00:00",
+  "generatedAt": "2026-08-27T19:16:55.226739+00:00",
   "source": {
     "provider": "fussball.de",
     "method": "public-html-endpoints",
@@ -304,9 +304,9 @@ window.__LEAGUE_DATA__ = {
       "nextMatch": {
         "rowIndex": 23,
         "team": "TSV Rudow III",
-        "homeTeam": "Cona Sur Berlin II",
+        "homeTeam": "CONO SUR BERLIN II",
         "awayTeam": "TSV Rudow III",
-        "opponent": "Cona Sur Berlin II",
+        "opponent": "CONO SUR BERLIN II",
         "location": "Auswaerts",
         "dateLabel": "12.09.2026 14:00",
         "dateTime": "2026-09-12T14:00:00",
@@ -333,9 +333,9 @@ window.__LEAGUE_DATA__ = {
         {
           "rowIndex": 23,
           "team": "TSV Rudow III",
-          "homeTeam": "Cona Sur Berlin II",
+          "homeTeam": "CONO SUR BERLIN II",
           "awayTeam": "TSV Rudow III",
-          "opponent": "Cona Sur Berlin II",
+          "opponent": "CONO SUR BERLIN II",
           "location": "Auswaerts",
           "dateLabel": "12.09.2026 14:00",
           "dateTime": "2026-09-12T14:00:00",
@@ -471,7 +471,7 @@ window.__LEAGUE_DATA__ = {
       {
         "team": "TSV Rudow III",
         "dateLabel": "12.09.2026 14:00",
-        "opponent": "Cona Sur Berlin II",
+        "opponent": "CONO SUR BERLIN II",
         "location": "Auswaerts",
         "matchUrl": "https://www.fussball.de/spiel/cono-sur-berlin-ii-tsv-rudow-iii/-/spiel/031G0FOPC0000000VS5489BTVVG7L386"
       }

@@ -4,19 +4,19 @@
     <!-- Character encoding and viewport -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- SEO Meta Tags -->
     <meta name="author" content="iosan">
     <meta name="description" content="Beitrittsformular des TSV Rudow Fördervereins: Ablauf und Einreichung.">
     <meta name="keywords" content="tsv rudow, förderverein, fußballverein, herrenfußball, berlin-rudow, vereinsförderung">
-    
+
     <!-- Page Title -->
     <title>Beitrittsformular - TSV Rudow Förderverein</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://tsvrudow.berlin/wp-content/uploads/2015/10/cropped-favicon-32x32.png">
     <link rel="shortcut icon" type="image/x-icon" href="https://tsvrudow.berlin/wp-content/uploads/2015/10/cropped-favicon-32x32.png">
-    
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -28,14 +28,22 @@
                 <img src="https://tsvrudow.berlin/wp-content/uploads/2015/12/logoh138.png" alt="TSV Rudow Förderverein Logo">
             </a>
         </div>
-        <ul>
+        <details class="nav-menu">
+            <summary class="nav-toggle" aria-label="Menü öffnen">
+                <span class="sr-only">Menü</span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </summary>
+            <ul>
             <li><a href="index.html" class="nav-button">Startseite</a></li>
             <li><a href="philosophie.html" class="nav-button">Philosophie</a></li>
             <li><a href="satzung.html" class="nav-button">Satzung</a></li>
             <li><a href="ansprechpartner.html" class="nav-button">Ansprechpartner</a></li>
             <li><a href="beitrittsformular.html" class="nav-button" aria-current="page">Beitrittsformular</a></li>
             <li><a href="aktuelles.html" class="nav-button">Aktuelles</a></li>
-        </ul>
+            </ul>
+        </details>
     </nav>
 
     <!-- Header with logo and title -->
@@ -77,5 +85,6 @@
             </a>
         </div>
     </footer>
+    <script src="js/nav-menu.js"></script>
 </body>
 </html>

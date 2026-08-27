@@ -21,7 +21,7 @@ PUML_SOURCES := $(wildcard $(DIAGRAMS_SRC_DIR)/*.puml)
 DIAGRAM_PNGS := $(patsubst $(DIAGRAMS_SRC_DIR)/%.puml,$(DIAGRAMS_OUT_DIR)/%.png,$(PUML_SOURCES))
 
 .PHONY: all docs diagrams pdfs clean clean-diagrams clean-pdfs docker-diagrams docker-pdfs
-.PHONY: validate-html validate-css validate-all
+.PHONY: validate-html validate-css validate-all validate-content hooks-install
 .PHONY: league-data
 
 all: docs
@@ -86,6 +86,14 @@ validate-css:
 	curl -sG --data-urlencode "text=$(shell cat html/css/style.css)" --data-urlencode "profile=css3svg" --data-urlencode "output=gnu" https://jigsaw.w3.org/css-validator/validator | sed 's/^/   /'
 
 validate-all: validate-html validate-css
+
+validate-content:
+	@echo "[Validate] HTML, CSS, JS and Python content"
+	@./scripts/validate_content.sh
+
+hooks-install:
+	@echo "[Git Hooks] Setting core.hooksPath to .githooks"
+	@git config core.hooksPath .githooks
 
 # Fetch TSV Rudow Herren I/II/III standings and match metadata to html/data/league-data.json
 league-data:
