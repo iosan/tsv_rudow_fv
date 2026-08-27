@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <!-- Character encoding and viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <meta name="author" content="iosan">
+    <meta name="description" content="Aktuelles des TSV Rudow Fördervereins: Nachrichten, Termine und Team-Updates.">
+    <meta name="keywords" content="tsv rudow, förderverein, fußballverein, herrenfußball, berlin-rudow, vereinsförderung">
+
+    <!-- Page Title -->
+    <title>Aktuelles - TSV Rudow Förderverein</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://tsvrudow.berlin/wp-content/uploads/2015/10/cropped-favicon-32x32.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://tsvrudow.berlin/wp-content/uploads/2015/10/cropped-favicon-32x32.png">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation bar (fixed at top) -->
+    <nav class="top-nav" aria-label="Hauptnavigation">
+        <div class="logo">
+            <a href="index.html" aria-label="TSV Rudow Förderverein Startseite">
+                <img src="https://tsvrudow.berlin/wp-content/uploads/2015/12/logoh138.png" alt="TSV Rudow Förderverein Logo">
+            </a>
+        </div>
+        <details class="nav-menu">
+            <summary class="nav-toggle" aria-label="Menü öffnen">
+                <span class="sr-only">Menü</span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </summary>
+            <ul>
+            <li><a href="index.html" class="nav-button">Startseite</a></li>
+            <li><a href="philosophie.html" class="nav-button">Philosophie</a></li>
+            <li><a href="satzung.html" class="nav-button">Satzung</a></li>
+            <li><a href="ansprechpartner.html" class="nav-button">Ansprechpartner</a></li>
+            <li><a href="beitrittsformular.html" class="nav-button">Beitrittsformular</a></li>
+            <li><a href="aktuelles.html" class="nav-button" aria-current="page">Aktuelles</a></li>
+            </ul>
+        </details>
+    </nav>
+
+    <!-- Header with logo and title -->
+    <!-- Header with title -->
+    <header>
+        <h1>TSV Rudow Förderverein</h1>
+    </header>
+
+    <!-- Main content with watermark background -->
+    <main class="content content-with-watermark content-with-watermark-full" style="background-image: url('images/aktuelles_rudow_fv.png');">
+        <article>
+            <h2>Aktuelles</h2>
+            <p>Hier werden aktuelle Informationen des Fördervereins gebündelt, von Projekten bis zu Terminen und Veranstaltungen.</p>
+            <p>Der Bereich eignet sich für News, Rückblicke, Ankündigungen und Hinweise zu Aktionen.</p>
+            <nav aria-label="Seitennavigation">
+                <p><a href="index.html">← Zurück zur Startseite</a></p>
+            </nav>
+        </article>
+        <article class="wide-data-article">
+            <h2>Aktueller Stand</h2>
+            <p>Die Inhalte aus html/data/league-data.json werden hier direkt gelesen und als HTML5-Tabellen und Listen angezeigt.</p>
+
+            <section class="team-updates" aria-label="Live-Daten TSV Rudow Herren I, II und III">
+                <div class="update-grid update-grid-trio">
+                    <article class="update-card">
+                        <h3>Tabellenstand</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Team</th>
+                                    <th>Platz</th>
+                                    <th>Spiele</th>
+                                    <th>Punkte</th>
+                                </tr>
+                            </thead>
+                            <tbody id="live-table-body">
+                                <tr>
+                                    <td>TSV Rudow</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </article>
+
+                    <article class="update-card">
+                        <h3>Letzte Ergebnisse</h3>
+                        <ul class="results-list" id="live-results-list">
+                            <li><strong>TSV Rudow</strong>: Lade Live-Daten ...</li>
+                        </ul>
+                        <p class="small-note" id="live-data-status">Live-Daten werden geladen.</p>
+                    </article>
+
+                    <article class="update-card update-card-wide">
+                        <h3>Kommende Spieltage</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Datum</th>
+                                    <th>Team</th>
+                                    <th>Begegnung</th>
+                                    <th>Ort</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="live-upcoming-body">
+                                <tr>
+                                    <td>-</td>
+                                    <td>TSV Rudow</td>
+                                    <td>Lade Live-Daten ...</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </article>
+                </div>
+            </section>
+
+            <section class="team-updates" aria-label="Detailansicht pro Mannschaft">
+                <h3>Live-Zusammenfassung je Mannschaft</h3>
+                <div id="live-team-cards" class="update-grid update-grid-paired">
+                    <article class="update-card">
+                        <h3>TSV Rudow</h3>
+                        <p>Live-Zusammenfassung wird geladen ...</p>
+                    </article>
+                </div>
+            </section>
+        </article>
+
+        <article>
+            <h2>Hinweis zur Datenquelle</h2>
+            <p>Quelle: fussball.de (oeffentliche Seiten und Endpunkte). Ergebnisse koennen in der Quell-HTML obfuskiert sein; deshalb werden verifizierte Match-Links mit ausgegeben.</p>
+            <p><a href="data/league-data.json" target="_blank" rel="noopener noreferrer">JSON-Daten direkt ansehen</a></p>
+            <nav aria-label="Seitennavigation">
+                <p><a href="index.html">← Zurück zur Startseite</a></p>
+            </nav>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 TSV Rudow Förderverein. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a></p>
+        <div class="validator-badges" role="group" aria-label="Validierungsabzeichen">
+            <a href="https://validator.w3.org/nu/?doc=referer" rel="noopener noreferrer" target="_blank" aria-label="HTML5-Validierung bei W3C prüfen">
+                <img src="images/validator-html5.svg" alt="HTML5 gültig (W3C)">
+            </a>
+            <a href="https://jigsaw.w3.org/css-validator/check/referer" rel="noopener noreferrer" target="_blank" aria-label="CSS-Validierung bei W3C prüfen">
+                <img src="images/validator-css.svg" alt="CSS gültig (W3C)">
+            </a>
+        </div>
+    </footer>
+    <script src="data/league-data.js"></script>
+    <script src="js/live-data.js"></script>
+    <script src="js/nav-menu.js"></script>
+</body>
+</html>
