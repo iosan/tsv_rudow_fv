@@ -4,6 +4,20 @@ All notable changes to this project are documented here.
 
 The format is based on Keep a Changelog and the project follows Semantic Versioning.
 
+## [0.1.2] - 2026-08-27
+
+### Added
+- Repo-local validation workflow for HTML, CSS, JS, Python, and shell scripts with staged whitespace checks.
+- Repo-managed Git hooks and a consolidated development requirements document for the full toolchain.
+- Responsive mobile navigation with a hamburger dropdown that closes on selection.
+
+### Fixed
+- Restored the top navigation on tablet and desktop layouts.
+- Updated the migrated philosophy and satzung pages with the source content from the legacy Foerderverein materials.
+
+### Improved
+- Aligned repository documentation with the local validation and development setup.
+
 ## [0.1.1] - 2026-08-24
 
 ### Added

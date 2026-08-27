@@ -76,13 +76,27 @@ Then open `http://localhost:8000`.
 
 ## Quality Workflow
 
+See [DEVELOPMENT-REQUIREMENTS.md](DEVELOPMENT-REQUIREMENTS.md) for the full cross-language toolchain list.
+
 ```bash
+# Install local validator dependencies once
+npm install
+
 # Build docs/diagrams
 make docs
 
 # Validate HTML and CSS via W3C services
 make validate-all
+
+# Validate HTML, CSS, JS and Python content before commit/push
+make validate-content
+
+# Install the repo-managed Git hooks for this clone
+make hooks-install
 ```
+
+The `make validate-content` target runs the repo-local validators used by the Git hooks, including a staged whitespace check.
+It also runs `shellcheck` against the repo shell scripts.
 
 ## Live League Data (TSV Rudow I/II/III)
 
