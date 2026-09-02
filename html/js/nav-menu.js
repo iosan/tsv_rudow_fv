@@ -34,7 +34,22 @@
         }
     }
 
+    function registerServiceWorker() {
+        if (!("serviceWorker" in window.navigator)) {
+            return;
+        }
+
+        if (window.location.protocol === "file:") {
+            return;
+        }
+
+        window.navigator.serviceWorker.register("sw.js").catch(function () {
+            // Keep the site functional even if offline caching cannot be installed.
+        });
+    }
+
     syncNavigationMenu();
+    registerServiceWorker();
 
     if (mobileQuery.addEventListener) {
         mobileQuery.addEventListener("change", syncNavigationMenu);

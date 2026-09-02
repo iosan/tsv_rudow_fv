@@ -4,6 +4,14 @@ All notable changes to this project are documented here.
 
 The format is based on Keep a Changelog and the project follows Semantic Versioning.
 
+## [0.1.3] - 2026-09-02
+
+### Added
+- Reusable `scripts/export_website_demo.sh` helper to package website runtime content from `html/` into a demo ZIP (default target: `~/share`).
+
+### Improved
+- Export workflow now supports custom output directory, archive name, and source path through CLI options.
+
 ## [0.1.2] - 2026-08-27
 
 ### Added
