@@ -1,7 +1,7 @@
 {
   "name": "tsv-rudow-foerderverein",
   "private": true,
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Static website for TSV Rudow Foerderverein",
   "scripts": {
     "validate:content": "bash scripts/validate_content.sh"
