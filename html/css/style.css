@@ -360,7 +360,9 @@ header h1 {
 }
 
 .card-title-compact {
-    font-size: clamp(0.9rem, 0.8rem + 0.25vw, 1.1rem);
+    font-size: clamp(0.8rem, 0.72rem + 0.2vw, 0.95rem);
+    line-height: 1.2;
+    white-space: nowrap;
 }
 
 .satzung-sections h4 {
