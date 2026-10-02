@@ -51,11 +51,11 @@ The content model is topic-based and mirrors the migrated Foerderverein source m
 tsv_rudow_fv/
 |-- html/
 |   |-- index.html
-|   |-- philosophie.html
 |   |-- transparenz.html
 |   |-- ansprechpartner.html
 |   |-- aktuelles.html
 |   |-- ergebnisse.html
+|   |-- partner.html
 |   |-- impressum.html
 |   |-- robots.txt
 |   |-- sitemap.xml
