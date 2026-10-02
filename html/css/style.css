@@ -667,6 +667,15 @@ header h1 {
     overflow-x: auto;
 }
 
+.compact-table {
+    font-size: 0.7rem;
+}
+
+.compact-table th,
+.compact-table td {
+    padding: 6px 4px;
+}
+
 .standings-table {
     min-width: 440px;
     table-layout: auto;
