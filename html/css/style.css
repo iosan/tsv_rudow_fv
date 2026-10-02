@@ -696,10 +696,12 @@ header h1 {
 .standings-table td:nth-child(2),
 .standings-table th:nth-child(2) {
     min-width: 0;
+    white-space: nowrap;
 }
 
 .standings-team-cell {
     text-align: center;
+    white-space: nowrap;
 }
 
 .standings-team-logo {
