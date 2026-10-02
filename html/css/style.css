@@ -668,12 +668,12 @@ header h1 {
 }
 
 .compact-table {
-    font-size: 0.7rem;
+    font-size: 0.82rem;
 }
 
 .compact-table th,
 .compact-table td {
-    padding: 6px 4px;
+    padding: 6px 5px;
 }
 
 .standings-table {
