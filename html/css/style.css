@@ -882,11 +882,18 @@ header h1 {
     position: relative;
     z-index: 1;
     max-width: 780px;
-    background: linear-gradient(180deg, rgba(247, 248, 247, 0.96) 0%, rgba(238, 243, 241, 0.92) 100%);
-    border: 1px solid rgba(213, 231, 225, 0.8);
+    background: linear-gradient(180deg, rgba(245, 247, 245, 0.98) 0%, rgba(236, 243, 240, 0.96) 100%);
+    border: 1px solid rgba(136, 177, 166, 0.38);
     border-radius: 12px;
     padding: 16px 18px;
     margin-bottom: 14px;
+    box-shadow: 0 10px 20px rgba(18, 41, 36, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.content-with-watermark .upload-parent-box,
+.content-with-watermark .upload-card {
+    background: linear-gradient(180deg, rgba(245, 247, 245, 0.98) 0%, rgba(236, 243, 240, 0.96) 100%);
+    border-color: rgba(136, 177, 166, 0.38);
 }
 
 .content-with-watermark > article:last-child {
