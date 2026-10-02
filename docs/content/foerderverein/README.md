@@ -20,14 +20,17 @@ Hinweis: Der Altbestand war technisch veraltet (Word-HTML), der Abruf erfolgte v
 ## Mapping auf die neue IA
 
 - `01_philosophie-und-historie.md` -> `html/philosophie.html`
-- `02_satzung-kernpunkte.md` -> `html/satzung.html`
+- `02_satzung-kernpunkte.md` -> `html/transparenz.html`
 - `03_ansprechpartner.md` -> `html/ansprechpartner.html`
-- `04_beitritt-und-prozess.md` -> `html/beitrittsformular.html`
-- redaktionelle Updates/News -> `html/aktuelles.html`
+- `04_beitritt-und-prozess.md` -> inhalt in `html/ansprechpartner.html` integriert
+- redaktionelle Updates/News -> `html/aktuelles.html` (Demo/Upload-Preview)
+- Ergebnisse & Tabellen -> `html/ergebnisse.html`
+- `content_uploader.md` -> geplantes Feature/Design fuer E-Mail-Content-Upload
 
 ## Pflegeprozess
 
 1. Inhalte zuerst in diesem Ordner aktualisieren.
 2. Freigabe durch Redaktion/Vorstand einholen.
 3. Danach HTML-Seiten synchronisieren.
-4. Aenderungen in `CHANGELOG.md` dokumentieren.
+4. Bei neuen Inhalten die Upload-Logik bzw. das Demo-Layout in `aktuelles.html` beachten.
+5. Aenderungen in `CHANGELOG.md` dokumentieren.

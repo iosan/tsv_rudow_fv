@@ -8,7 +8,7 @@ rectangle "Public (Indexed)" {
   [satzung.html]
   [ansprechpartner.html]
   [beitrittsformular.html]
-  [aktuelles.html]
+  [ergebnisse.html]
 }
 
 rectangle "Excluded" {
@@ -24,7 +24,7 @@ rectangle "Excluded" {
 [sitemap.xml] --> [satzung.html]
 [sitemap.xml] --> [ansprechpartner.html]
 [sitemap.xml] --> [beitrittsformular.html]
-[sitemap.xml] --> [aktuelles.html]
+[sitemap.xml] --> [ergebnisse.html]
 
 [robots.txt] --> [Excluded]
 @enduml

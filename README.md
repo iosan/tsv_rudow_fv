@@ -1,13 +1,14 @@
 # TSV Rudow Foerderverein Website
 
-Modern static website for the TSV Rudow Foerderverein, centered on five main content areas:
+Modern static website for the TSV Rudow Foerderverein, currently centered on five main content areas:
 
 - Philosophie
-- Satzung
+- Transparenz
 - Ansprechpartner
-- Beitrittsformular
 - Aktuelles
+- Ergebnisse
 
+The legacy membership form content has been merged into the Ansprechpartner page, while Aktuales serves as a demo content-upload area and Ergebnisse shows league data and standings.
 The project is intentionally lightweight (plain HTML + CSS), content-focused, accessible, and easy to deploy on any static host.
 
 ## Project Goals
@@ -32,14 +33,12 @@ tsv_rudow_fv/
 |-- html/
 |   |-- index.html
 |   |-- philosophie.html
-|   |-- satzung.html
+|   |-- transparenz.html
 |   |-- ansprechpartner.html
-|   |-- beitrittsformular.html
 |   |-- aktuelles.html
+|   |-- ergebnisse.html
 |   |-- impressum.html
 |   |-- about.html
-|   |-- contact.html
-|   |-- transparenz.html
 |   |-- mitmachen.html
 |   |-- robots.txt
 |   |-- sitemap.xml
@@ -132,6 +131,13 @@ Canonical migrated source content is stored in:
 - `docs/content/foerderverein/`
 
 Use this folder for editorial updates before applying changes to HTML pages.
+
+Current editorial state:
+
+- `aktuelles.html` is a demo/example content-upload page built from four sample uploaded-style cards
+- `ergebnisse.html` is the live results/league-data page
+- the old standalone membership form was folded into the Ansprechpartner page
+- the old Satzung page was renamed to Transparenz and kept as a compatibility redirect
 
 ## Deployment
 

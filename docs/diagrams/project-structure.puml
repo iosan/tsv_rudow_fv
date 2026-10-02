@@ -11,7 +11,7 @@ folder "Repository" {
     file "satzung.html"
     file "ansprechpartner.html"
     file "beitrittsformular.html"
-    file "aktuelles.html"
+    file "ergebnisse.html"
     file "impressum.html"
     folder "css" {
       file "style.css"

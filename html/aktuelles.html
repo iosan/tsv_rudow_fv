@@ -7,8 +7,8 @@
 
     <!-- SEO Meta Tags -->
     <meta name="author" content="iosan">
-    <meta name="description" content="Aktuelles des TSV Rudow Fördervereins: Nachrichten, Termine und Team-Updates.">
-    <meta name="keywords" content="tsv rudow, förderverein, fußballverein, herrenfußball, berlin-rudow, vereinsförderung">
+    <meta name="description" content="Aktuelles und Beispielbeiträge für eingehende Content-Uploads im TSV Rudow Förderverein.">
+    <meta name="keywords" content="tsv rudow, förderverein, fußballverein, herrenfußball, berlin-rudow, vereinsförderung, aktuelles, content upload">
 
     <!-- Page Title -->
     <title>Aktuelles - TSV Rudow Förderverein</title>
@@ -19,9 +19,78 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .upload-parent-box {
+            border: 1px solid rgba(130, 146, 138, 0.5);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 12px 30px rgba(20, 25, 22, 0.08);
+            padding: 18px;
+            display: grid;
+            gap: 18px;
+        }
+
+        .upload-card {
+            border: 1px solid rgba(130, 146, 138, 0.45);
+            border-radius: 14px;
+            background: #fff;
+            padding: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 18px rgba(21, 28, 24, 0.06);
+        }
+
+        .upload-media {
+            float: left;
+            width: clamp(220px, 38%, 340px);
+            margin: 0 18px 10px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(17, 37, 29, 0.12);
+            background: #eff5f2;
+        }
+
+        .upload-media img {
+            display: block;
+            width: 100%;
+            height: clamp(180px, 26vw, 240px);
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .upload-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .upload-tag {
+            display: inline-block;
+            margin-bottom: 8px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(7, 127, 102, 0.1);
+            border: 1px solid rgba(7, 127, 102, 0.18);
+            color: #0b6e5d;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .upload-card p {
+            margin: 0 0 10px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 720px) {
+            .upload-media {
+                float: none;
+                width: 100%;
+                margin: 0 0 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation bar (fixed at top) -->
     <nav class="top-nav" aria-label="Hauptnavigation">
         <div class="logo">
             <a href="index.html" aria-label="TSV Rudow Förderverein Startseite">
@@ -36,151 +105,78 @@
                 <span aria-hidden="true"></span>
             </summary>
             <ul>
-            <li><a href="index.html" class="nav-button">Startseite</a></li>
-            <li><a href="philosophie.html" class="nav-button">Philosophie</a></li>
-            <li><a href="satzung.html" class="nav-button">Satzung</a></li>
-            <li><a href="ansprechpartner.html" class="nav-button">Ansprechpartner</a></li>
-            <li><a href="beitrittsformular.html" class="nav-button">Beitrittsformular</a></li>
-            <li><a href="aktuelles.html" class="nav-button" aria-current="page">Aktuelles</a></li>
+                <li><a href="index.html" class="nav-button">Startseite</a></li>
+                <li><a href="transparenz.html" class="nav-button">Transparenz</a></li>
+                <li><a href="ansprechpartner.html" class="nav-button">Ansprechpartner</a></li>
+                <li><a href="aktuelles.html" class="nav-button" aria-current="page">Aktuelles</a></li>
+                <li><a href="ergebnisse.html" class="nav-button">Ergebnisse</a></li>
+                <li><a href="partner.html" class="nav-button">Partner</a></li>
             </ul>
         </details>
     </nav>
 
-    <!-- Header with logo and title -->
-    <!-- Header with title -->
     <header>
         <h1>TSV Rudow Förderverein</h1>
     </header>
 
-    <!-- Main content with watermark background -->
     <main class="content content-with-watermark content-with-watermark-full" style="background-image: url('images/aktuelles_rudow_fv.png');">
         <article>
             <h2>Aktuelles</h2>
-            <p>Hier werden aktuelle Informationen des Fördervereins gebündelt, von Projekten bis zu Terminen und Veranstaltungen.</p>
-            <p>Der Bereich eignet sich für News, Rückblicke, Ankündigungen und Hinweise zu Aktionen.</p>
-            <nav aria-label="Seitennavigation">
-                <p><a href="index.html">← Zurück zur Startseite</a></p>
-            </nav>
-        </article>
-        <article class="wide-data-article">
-            <h2>Aktueller Stand</h2>
-            <p>Die Inhalte aus html/data/league-data.json werden hier direkt gelesen und als HTML5-Tabellen und Listen angezeigt.</p>
+            <p>Beispielseite für eingehende Vereinsinhalte. Die folgenden vier Boxen zeigen, wie eingereichte E-Mail-Beiträge als gestylte Content-Uploads im Frontend erscheinen könnten.</p>
+            <p>Jeder Beitrag enthält ein Bild links, einen klaren Titel und einen Textbereich, der rechts und unterhalb des Bildes fließend um die Bildkante läuft.</p>
 
-            <section class="team-updates" aria-label="Live-Daten TSV Rudow Herren I, II und III">
-                <div class="update-grid update-grid-trio">
-                    <article class="update-card">
-                        <h3>Tabellenstand</h3>
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Team</th>
-                                    <th>Platz</th>
-                                    <th>Spiele</th>
-                                    <th>Punkte</th>
-                                </tr>
-                            </thead>
-                            <tbody id="live-table-body">
-                                <tr>
-                                    <td>TSV Rudow</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </article>
+            <div class="upload-parent-box">
+                <article class="upload-card">
+                    <div class="upload-media">
+                        <img src="images/aktuelles_01_rudow_fv.png" alt="Erster Beispiel-Upload">
+                    </div>
+                    <div class="upload-copy">
+                        <span class="upload-tag">To be posted</span>
+                        <h3>Sommernachmittag am Platz</h3>
+                        <p>Die Mannschaft und die Familie haben den Nachmittag gemeinsam auf dem Trainingsgelände verbracht. Die Stimmung war gut, die Energie deutlich spürbar und die Vorbereitung auf die nächsten Spiele steht bereits in den Startlöchern.</p>
+                        <p>Für den Förderverein ist so ein Moment typisch: viele Menschen, ein gemeinsames Ziel und ein sichtbarer Eindruck von Zusammenhalt im Verein.</p>
+                    </div>
+                </article>
 
-                    <article class="update-card">
-                        <h3>Letzte Ergebnisse</h3>
-                        <ul class="results-list" id="live-results-list">
-                            <li><strong>TSV Rudow</strong>: Lade Live-Daten ...</li>
-                        </ul>
-                        <p class="small-note" id="live-data-status">Live-Daten werden geladen.</p>
-                    </article>
+                <article class="upload-card">
+                    <div class="upload-media">
+                        <img src="images/aktuelles_02_rudow_fv.png" alt="Zweiter Beispiel-Upload">
+                    </div>
+                    <div class="upload-copy">
+                        <span class="upload-tag">To be posted</span>
+                        <h3>Gemeinsam vor dem Anpfiff</h3>
+                        <p>Vor dem Heimspiel stand die Halle voller Erwartung. Fans, Eltern, Spieler und Helfer trafen sich ein paar Minuten vor dem Start und tauschten sich über die Woche und die Ziele der kommenden Begegnung aus.</p>
+                        <p>Solche Momente zeigen, wie wichtig die Rolle des Fördervereins für den Vereinsalltag und die sportliche Stimmung ist.</p>
+                    </div>
+                </article>
 
-                    <article class="update-card update-card-wide">
-                        <h3>Kommende Spieltage</h3>
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Datum</th>
-                                    <th>Team</th>
-                                    <th>Begegnung</th>
-                                </tr>
-                            </thead>
-                            <tbody id="live-upcoming-body">
-                                <tr>
-                                    <td>-</td>
-                                    <td>TSV Rudow</td>
-                                    <td>Lade Live-Daten ...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </article>
-                </div>
-            </section>
+                <article class="upload-card">
+                    <div class="upload-media">
+                        <img src="images/aktuelles_03_rudow_fv.png" alt="Dritter Beispiel-Upload">
+                    </div>
+                    <div class="upload-copy">
+                        <span class="upload-tag">To be posted</span>
+                        <h3>Training mit Teamgeist</h3>
+                        <p>Die jüngeren Spieler trainierten mit viel Einsatz, und die Begleitpersonen im Umfeld des Vereins unterstützten die Session mit positiver Energie. Die Atmosphäre war locker, aber konzentriert – genau die Mischung, die für eine gute Vorbereitung wichtig ist.</p>
+                        <p>Die Idee des Uploads ist hier besonders gut sichtbar: Bild und Text bleiben in einer klaren, professionellen Struktur, aber die emotionale Wirkung bleibt erhalten.</p>
+                    </div>
+                </article>
 
-            <section class="team-updates" aria-label="Tabellen je Mannschaft">
-                <h3>Tabellen je Mannschaft</h3>
-                <div id="live-standings-cards" class="update-grid update-grid-trio">
-                    <article class="update-card">
-                        <h3>TSV Rudow</h3>
-                        <div class="table-scroll">
-                            <table class="data-table standings-table">
-                                <thead>
-                                    <tr>
-                                        <th>Pl.</th>
-                                        <th>Team</th>
-                                        <th>Sp.</th>
-                                        <th>G</th>
-                                        <th>U</th>
-                                        <th>V</th>
-                                        <th>Tore</th>
-                                        <th>Diff.</th>
-                                        <th>Pkt.</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>-</td>
-                                        <td>TSV Rudow</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </article>
-                </div>
-            </section>
-
-            <section class="team-updates" aria-label="Detailansicht pro Mannschaft">
-                <h3>Live-Zusammenfassung je Mannschaft</h3>
-                <div id="live-team-cards" class="update-grid update-grid-paired">
-                    <article class="update-card">
-                        <h3>TSV Rudow</h3>
-                        <p>Live-Zusammenfassung wird geladen ...</p>
-                    </article>
-                </div>
-            </section>
-        </article>
-
-        <article>
-            <h2>Hinweis zur Datenquelle</h2>
-            <p>Quelle: fussball.de (oeffentliche Seiten und Endpunkte). Ergebnisse koennen in der Quell-HTML obfuskiert sein; deshalb werden verifizierte Match-Links mit ausgegeben.</p>
-            <p><a href="data/league-data.json" target="_blank" rel="noopener noreferrer">JSON-Daten direkt ansehen</a></p>
-            <nav aria-label="Seitennavigation">
-                <p><a href="index.html">← Zurück zur Startseite</a></p>
-            </nav>
+                <article class="upload-card">
+                    <div class="upload-media">
+                        <img src="images/aktuelles_04_rudow_fv.png" alt="Vierter Beispiel-Upload">
+                    </div>
+                    <div class="upload-copy">
+                        <span class="upload-tag">To be posted</span>
+                        <h3>Mit Herz für den Verein</h3>
+                        <p>Im Fokus standen die Menschen hinter dem Spielbetrieb: Helfer, Fans und Verantwortliche, die auch in ruhigen Phasen viel für den Alltag und die Zukunft des Vereins leisten. Das Beispiel zeigt, wie persönlicher, echter Vereinscontent in ein festes Layout übertragen werden kann.</p>
+                        <p>Die Gestaltung lässt die Beiträge klar, zugänglich und hochwertig wirken, ohne den echten Charakter der eingereichten Inhalte zu verlieren.</p>
+                    </div>
+                </article>
+            </div>
         </article>
     </main>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 TSV Rudow Förderverein. Alle Rechte vorbehalten. | <a href="impressum.html">Impressum</a></p>
         <div class="validator-badges" role="group" aria-label="Validierungsabzeichen">
@@ -193,7 +189,6 @@
         </div>
     </footer>
     <script src="data/league-data.js"></script>
-    <script src="js/live-data.js"></script>
     <script src="js/nav-menu.js"></script>
     <script src="js/ticker.js"></script>
 </body>
