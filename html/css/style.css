@@ -435,10 +435,7 @@ header h1 {
 
 .image-container:nth-child(1),
 .image-container:nth-child(2),
-.image-container:nth-child(3) {
-    grid-column: span 4;
-}
-
+.image-container:nth-child(3),
 .image-container:nth-child(4),
 .image-container:nth-child(5) {
     grid-column: span 6;
@@ -537,6 +534,80 @@ header h1 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.partner-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.partner-card {
+    min-height: 200px;
+}
+
+.partner-card a {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.partner-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.partner-card .partner-name {
+    display: block;
+    margin-top: 12px;
+    font-weight: 600;
+    color: #084f41;
+    text-align: center;
+}
+
+.partner-card-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.partner-card-text a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 120px;
+    padding: 16px;
+    background: linear-gradient(135deg, #fefefe 0%, #edf8f4 48%, #dcefe8 100%);
+    border: 1px solid #cfe3db;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.6);
+}
+
+.partner-card-banner .partner-name {
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0b4d42;
+    font-weight: 700;
+}
+
+.partner-card-banner .partner-name small {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: #315d56;
+    margin-top: 6px;
+}
+
 .update-card {
     position: relative;
     isolation: isolate;
@@ -574,7 +645,7 @@ header h1 {
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     table-layout: fixed;
 }
 
@@ -586,7 +657,7 @@ header h1 {
 .standings-table {
     min-width: 0;
     table-layout: fixed;
-    font-size: 0.68rem;
+    font-size: 0.8rem;
 }
 
 .standings-table th,
@@ -812,6 +883,13 @@ footer a {
 .validator-badges img {
     height: 22px;
     width: auto;
+}
+
+@media (max-width: 640px) {
+    .partner-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

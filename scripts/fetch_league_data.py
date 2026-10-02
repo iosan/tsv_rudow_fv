@@ -242,6 +242,27 @@ def parse_table_rows(table_html: str) -> list[dict[str, Any]]:
     return rows
 
 
+def normalize_date_label(date_text: str, default_year: int) -> str:
+    if not date_text:
+        return date_text
+
+    date_match = re.search(r"(\d{2})\.(\d{2})\.(\d{4}|\d{2})", date_text)
+    if not date_match:
+        return date_text
+
+    day, month, year_part = date_match.groups()
+    year = int(year_part) if len(year_part) == 4 else default_year
+    if len(year_part) == 2:
+        year = 2000 + int(year_part)
+
+    normalized = f"{int(day):02d}.{int(month):02d}.{year:04d}"
+    time_match = re.search(r"(\d{1,2}):(\d{2})", date_text)
+    if time_match:
+        hour, minute = map(int, time_match.groups())
+        normalized = f"{normalized} {hour:02d}:{minute:02d}"
+    return normalized
+
+
 def parse_datetime_iso(date_text: str, default_year: int) -> str | None:
     full_date = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", date_text)
     short_date = re.search(r"(\d{2})\.(\d{2})\.", date_text)
@@ -281,11 +302,25 @@ def parse_match_detail_metadata(match_url: str) -> dict[str, Any]:
         MATCH_META_CACHE[match_url] = metadata
         return metadata
 
-    date_match = re.search(r"am\s+(\d{2}\.\d{2}\.\d{4})(?:\s+(\d{1,2}:\d{2}))?", detail_html)
+    date_match = re.search(
+        r"am\s+(\d{2}\.\d{2}\.\d{4})(?:\s*(?:,)?\s*(\d{1,2}:\d{2}))?",
+        detail_html,
+        flags=re.I,
+    )
+    if not date_match:
+        title_match = re.search(
+            r"<title>.*?(\d{2}\.\d{2}\.\d{4})(?:.*?(\d{1,2}:\d{2}))?.*?</title>",
+            detail_html,
+            flags=re.I | re.S,
+        )
+        if title_match:
+            date_match = title_match
+
     if date_match:
         date_part = date_match.group(1)
         time_part = date_match.group(2)
-        metadata["dateLabel"] = f"{date_part} {time_part}".strip()
+        raw_label = date_part if not time_part else f"{date_part} {time_part}"
+        metadata["dateLabel"] = normalize_date_label(raw_label, dt.datetime.now().year)
         if time_part:
             metadata["dateTime"] = parse_datetime_iso(f"{date_part} {time_part}", dt.datetime.now().year)
         else:
@@ -295,8 +330,16 @@ def parse_match_detail_metadata(match_url: str) -> dict[str, Any]:
         day_link = re.search(r"/spieldatum/(\d{4}-\d{2}-\d{2})/staffel/", detail_html)
         if day_link:
             yyyy_mm_dd = day_link.group(1)
-            metadata["dateLabel"] = yyyy_mm_dd
+            date_obj = dt.datetime.strptime(yyyy_mm_dd, "%Y-%m-%d")
+            metadata["dateLabel"] = date_obj.strftime("%d.%m.%Y")
             metadata["dateTime"] = f"{yyyy_mm_dd}T00:00:00"
+
+    if "dateTime" not in metadata:
+        title_date = re.search(r"<(?:title|meta[^>]*content)[^>]*?(\d{2}\.\d{2}\.\d{4})", detail_html, flags=re.I | re.S)
+        if title_date:
+            date_part = title_date.group(1)
+            metadata["dateLabel"] = date_part
+            metadata["dateTime"] = parse_datetime_iso(date_part, dt.datetime.now().year)
 
     half_result_match = re.search(
         r'<span class="half-result">\[\s*([0-9]{1,2}\s*:\s*[0-9]{1,2})\s*\]</span>',
@@ -432,6 +475,7 @@ def parse_matches(page_html: str, team_name: str, season_year: int) -> list[dict
             flags=re.I | re.S,
         )
         date_text = normalize_space(strip_tags(date_cell_match.group(2))) if date_cell_match else current_date_text
+        formatted_date_label = normalize_date_label(date_text, season_year)
 
         home_team = clubs[0]
         away_team = clubs[1]
@@ -456,7 +500,7 @@ def parse_matches(page_html: str, team_name: str, season_year: int) -> list[dict
                 "awayTeam": away_team,
                 "opponent": opponent,
                 "location": "Heim" if is_home else "Auswaerts",
-                "dateLabel": date_text,
+                "dateLabel": formatted_date_label,
                 "dateTime": iso_datetime,
                 "status": status,
                 "score": None,
@@ -473,9 +517,23 @@ def parse_matches(page_html: str, team_name: str, season_year: int) -> list[dict
 def enrich_matches(matches: list[dict[str, Any]], limit: int = 12) -> None:
     for item in matches[:limit]:
         detail = parse_match_detail_metadata(item.get("matchUrl", ""))
-        if detail.get("dateLabel"):
+        detail_label = str(detail.get("dateLabel", ""))
+        detail_time = str(detail.get("dateTime", ""))
+        item_label = str(item.get("dateLabel", ""))
+        item_time = str(item.get("dateTime", ""))
+
+        detail_has_time = bool(
+            re.search(r"\d{1,2}:\d{2}", detail_label)
+            or (re.search(r"T\d{2}:\d{2}", detail_time) and not detail_time.endswith("T00:00:00"))
+        )
+        item_has_time = bool(
+            re.search(r"\d{1,2}:\d{2}", item_label)
+            or (re.search(r"T\d{2}:\d{2}", item_time) and not item_time.endswith("T00:00:00"))
+        )
+
+        if detail.get("dateLabel") and (not item.get("dateTime") or detail_has_time or not item_has_time):
             item["dateLabel"] = detail["dateLabel"]
-        if detail.get("dateTime"):
+        if detail.get("dateTime") and (not item.get("dateTime") or detail_has_time or not item_has_time):
             item["dateTime"] = detail["dateTime"]
 
         if item.get("dateTime"):

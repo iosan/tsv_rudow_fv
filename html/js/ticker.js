@@ -73,11 +73,11 @@
         ticker = document.createElement("aside");
         ticker.id = tickerId;
         ticker.className = "news-ticker";
-        ticker.setAttribute("aria-label", "Aktuelles-Ticker");
+        ticker.setAttribute("aria-label", "Ergebnisse-Ticker");
 
         label = document.createElement("span");
         label.className = "news-ticker-label";
-        label.textContent = "Aktuelles";
+        label.textContent = "Ergebnisse";
 
         viewport = document.createElement("div");
         viewport.className = "news-ticker-viewport";
@@ -109,7 +109,7 @@
         var li = document.createElement("li");
         var link = document.createElement("a");
 
-        link.href = "aktuelles.html";
+        link.href = "ergebnisse.html";
         link.textContent = textValue;
         link.setAttribute("aria-label", textValue);
 
@@ -140,21 +140,21 @@
             items.push({
                 text: "Ergebnis: " + homeTeam + " vs. " + awayTeam +
                     " - " + formatResultLabel(entry),
-                href: entry.matchUrl || "aktuelles.html"
+                href: entry.matchUrl || "ergebnisse.html"
             });
         });
 
         upcomingMatches.slice(0, 3).forEach(function (entry) {
             items.push({
                 text: "Vorschau: " + String(entry.team || "TSV Rudow") + " spielt am " + String(entry.dateLabel || "Termin offen") + " gegen " + String(entry.opponent || "Gegner offen"),
-                href: entry.matchUrl || "aktuelles.html"
+                href: entry.matchUrl || "ergebnisse.html"
             });
         });
 
         if (items.length === 0) {
-            items.push({ text: "Aktuelle News, Termine und Team-Updates im Bereich Aktuelles.", href: "aktuelles.html" });
-            items.push({ text: "Foerderverein und Spielbetrieb: Alles Wichtige auf einen Blick.", href: "aktuelles.html" });
-            items.push({ text: "Tabellenstand, Ergebnisse und kommende Spieltage jetzt ansehen.", href: "aktuelles.html" });
+            items.push({ text: "Aktuelle News, Termine und Team-Updates im Bereich Ergebnisse.", href: "ergebnisse.html" });
+            items.push({ text: "Foerderverein und Spielbetrieb: Alles Wichtige auf einen Blick.", href: "ergebnisse.html" });
+            items.push({ text: "Tabellenstand, Ergebnisse und kommende Spieltage jetzt ansehen.", href: "ergebnisse.html" });
         }
 
         return items;
@@ -250,24 +250,43 @@
     }
 
     function loadTicker() {
+        var possibleUrls = [
+            "data/league-data.json",
+            "./data/league-data.json",
+            "../data/league-data.json"
+        ];
+
+        function fetchWithUrls(index) {
+            var url = possibleUrls[index];
+
+            fetch(url, { cache: "no-store" })
+                .then(function (response) {
+                    if (!response.ok) {
+                        if (index < possibleUrls.length - 1) {
+                            fetchWithUrls(index + 1);
+                            return;
+                        }
+                        throw new Error("Ticker fetch failed: " + response.status);
+                    }
+                    return response.json();
+                })
+                .then(function (payload) {
+                    if (!payload) {
+                        return;
+                    }
+                    renderTicker(buildTickerItemsFromPayload(payload));
+                })
+                .catch(function () {
+                    renderTicker(buildTickerItemsFromPayload(null));
+                });
+        }
+
         if (window.__LEAGUE_DATA__) {
             renderTicker(buildTickerItemsFromPayload(window.__LEAGUE_DATA__));
             return;
         }
 
-        fetch("data/league-data.json", { cache: "no-store" })
-            .then(function (response) {
-                if (!response.ok) {
-                    throw new Error("Ticker fetch failed: " + response.status);
-                }
-                return response.json();
-            })
-            .then(function (payload) {
-                renderTicker(buildTickerItemsFromPayload(payload));
-            })
-            .catch(function () {
-                renderTicker(buildTickerItemsFromPayload(null));
-            });
+        fetchWithUrls(0);
     }
 
     createHeaderSeparator();

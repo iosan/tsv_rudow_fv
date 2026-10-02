@@ -11,14 +11,15 @@ v0.1.1, 2026-08-24
 
 This repository contains a modern static website for the TSV Rudow Foerderverein.
 
-Primary navigation and content architecture are centered on five core pages:
+Primary navigation and content architecture are currently centered on five core pages:
 
 . Philosophie
-. Satzung
+. Transparenz
 . Ansprechpartner
-. Beitrittsformular
 . Aktuelles
+. Ergebnisse
 
+The current implementation reflects the renamed transparency page, the merged membership/contact page, the example upload page in Aktuelles, and the live data results page in Ergebnisse.
 == Architecture Principles
 
 === 1. Content-first information architecture
@@ -51,10 +52,10 @@ tsv_rudow_fv/
 |-- html/
 |   |-- index.html
 |   |-- philosophie.html
-|   |-- satzung.html
+|   |-- transparenz.html
 |   |-- ansprechpartner.html
-|   |-- beitrittsformular.html
 |   |-- aktuelles.html
+|   |-- ergebnisse.html
 |   |-- impressum.html
 |   |-- robots.txt
 |   |-- sitemap.xml
