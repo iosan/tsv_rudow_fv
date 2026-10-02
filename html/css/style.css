@@ -664,7 +664,7 @@ header h1 {
 .standings-table {
     min-width: 440px;
     table-layout: auto;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 .standings-table th,
