@@ -360,10 +360,16 @@ header h1 {
 }
 
 .card-title-compact {
-    font-size: clamp(0.58rem, 0.52rem + 0.14vw, 0.72rem);
+    font-size: clamp(0.52rem, 0.46rem + 0.12vw, 0.64rem);
     line-height: 1.1;
     white-space: nowrap;
     letter-spacing: -0.01em;
+}
+
+.section-heading-compact {
+    font-size: clamp(1rem, 0.9rem + 0.4vw, 1.3rem);
+    line-height: 1.2;
+    margin-bottom: 8px;
 }
 
 .satzung-sections h4 {
