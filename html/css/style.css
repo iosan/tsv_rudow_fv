@@ -715,6 +715,12 @@ header h1 {
     max-width: 100%;
     font-size: 0.62rem;
     line-height: 1.1;
+    white-space: nowrap;
+}
+
+#live-team-cards .update-card h3,
+#live-standings-cards .update-card h3 {
+    white-space: nowrap;
 }
 
 #live-standings-cards > .update-card:first-child {
