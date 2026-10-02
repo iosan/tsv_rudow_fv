@@ -245,6 +245,20 @@
         return true;
     }
 
+    function isFreshPayload(payload, maxAgeMinutes) {
+        if (!payload || !payload.generatedAt) {
+            return false;
+        }
+
+        var generatedAt = new Date(payload.generatedAt);
+        if (Number.isNaN(generatedAt.getTime())) {
+            return false;
+        }
+
+        var ageMinutes = (Date.now() - generatedAt.getTime()) / 60000;
+        return ageMinutes <= maxAgeMinutes;
+    }
+
     function setOfflineStatus() {
         var status = document.getElementById("live-data-status");
         if (!status) {
@@ -254,11 +268,13 @@
     }
 
     function loadLiveData() {
-        if (renderFromPayload(window.__LEAGUE_DATA__)) {
+        var cachedPayload = window.__LEAGUE_DATA__;
+        if (isFreshPayload(cachedPayload, 60)) {
+            renderFromPayload(cachedPayload);
             return;
         }
 
-        fetch("data/league-data.json", { cache: "no-store" })
+        fetch("data/league-data.json?ts=" + Date.now(), { cache: "no-store" })
             .then(function (response) {
                 if (!response.ok) {
                     throw new Error("Fetch failed: " + response.status);
@@ -269,7 +285,7 @@
                 renderFromPayload(payload);
             })
             .catch(function () {
-                if (!renderFromPayload(window.__LEAGUE_DATA__)) {
+                if (!renderFromPayload(cachedPayload)) {
                     // Keep static fallback content when live feed is unavailable.
                     setOfflineStatus();
                 }

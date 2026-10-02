@@ -4,6 +4,16 @@ All notable changes to this project are documented here.
 
 The format is based on Keep a Changelog and the project follows Semantic Versioning.
 
+## [0.1.7] - 2026-10-02
+
+### Fixed
+- Resolved stale league-data timestamps by forcing fresh JSON refreshes when the browser cache is stale.
+- Restored the live site image assets on the production VPS after permission issues blocked the landing-page visuals.
+
+### Improved
+- Hardened the hourly data refresh loop so it only updates when the source site is reachable.
+- Unified the site’s card styling and compact results layout to keep the responsive presentation consistent across pages.
+
 ## [0.1.6] - 2026-10-02
 
 ### Fixed
