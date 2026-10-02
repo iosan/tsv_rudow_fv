@@ -3,18 +3,18 @@
 == Main Pages
 
 - `html/index.html`
-- `html/philosophie.html`
 - `html/transparenz.html`
 - `html/ansprechpartner.html`
 - `html/aktuelles.html`
 - `html/ergebnisse.html`
+- `html/partner.html`
 
 == Current Functional State
 
 - `aktuelles.html` is a demo content-upload page with four example uploaded-style cards
 - `ergebnisse.html` holds the league data tables and live match overview
 - legacy membership/form content is merged into the Ansprechpartner page
-- legacy `satzung.html` has been renamed to `transparenz.html` and appears as a redirect compatibility page
+- legacy `satzung.html` redirects to `transparenz.html` for compatibility
 
 == Core Files
 

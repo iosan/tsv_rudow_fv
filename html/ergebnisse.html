@@ -63,14 +63,14 @@
             </nav>
         </article>
         <article class="wide-data-article">
-            <h2>Aktueller Stand</h2>
+            <h2 class="section-heading-compact">Aktueller Stand</h2>
             <p>Die Inhalte aus html/data/league-data.json werden hier direkt gelesen und als HTML5-Tabellen und Listen angezeigt.</p>
 
             <section class="team-updates" aria-label="Live-Daten TSV Rudow Herren I, II und III">
                 <div class="update-grid update-grid-trio">
                     <article class="update-card">
-                        <h3>Tabellenstand</h3>
-                        <table class="data-table">
+                        <h3 class="card-title-compact">Tabellenstand</h3>
+                        <table class="data-table compact-table">
                             <thead>
                                 <tr>
                                     <th>Team</th>
@@ -91,15 +91,14 @@
                     </article>
 
                     <article class="update-card">
-                        <h3>Letzte Ergebnisse</h3>
+                        <h3 class="card-title-compact">Letzte Ergebnisse</h3>
                         <ul class="results-list" id="live-results-list">
-                            <li><strong>TSV Rudow</strong>: Lade Live-Daten ...</li>
+                            <li><strong>TSV Rudow</strong>: Keine aktuellen Ergebnisse.</li>
                         </ul>
-                        <p class="small-note" id="live-data-status">Live-Daten werden geladen.</p>
                     </article>
 
                     <article class="update-card update-card-wide">
-                        <h3>Kommende Spieltage</h3>
+                        <h3 class="card-title-compact">Kommende Spieltage</h3>
                         <table class="data-table">
                             <thead>
                                 <tr>
@@ -112,7 +111,7 @@
                                 <tr>
                                     <td>-</td>
                                     <td>TSV Rudow</td>
-                                    <td>Lade Live-Daten ...</td>
+                                    <td>Keine kommenden Spiele.</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -171,9 +170,7 @@
         </article>
 
         <article>
-            <h2>Hinweis zur Datenquelle</h2>
-            <p>Quelle: fussball.de (oeffentliche Seiten und Endpunkte). Ergebnisse koennen in der Quell-HTML obfuskiert sein; deshalb werden verifizierte Match-Links mit ausgegeben.</p>
-            <p><a href="data/league-data.json" target="_blank" rel="noopener noreferrer">JSON-Daten direkt ansehen</a></p>
+            <p class="small-note" id="live-data-status"></p>
             <nav aria-label="Seitennavigation">
                 <p><a href="index.html">← Zurück zur Startseite</a></p>
             </nav>

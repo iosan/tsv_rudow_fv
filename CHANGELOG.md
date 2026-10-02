@@ -4,6 +4,16 @@ All notable changes to this project are documented here.
 
 The format is based on Keep a Changelog and the project follows Semantic Versioning.
 
+## [0.1.6] - 2026-10-02
+
+### Fixed
+- Consolidated the legacy Mitmachen content into the Ansprechpartner page and removed the obsolete stand-alone page.
+- Corrected stale contact and membership links to point to the live Ansprechpartner destination.
+
+### Improved
+- Standardized the site-wide typography and compact card layout so the results and info blocks now share the same visual system.
+- Cleaned up documentation drift around the page structure and release metadata.
+
 ## [0.1.3] - 2026-09-02
 
 ### Added

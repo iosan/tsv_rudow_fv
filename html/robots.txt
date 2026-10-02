@@ -6,6 +6,5 @@ Disallow: /impressum.html
 Disallow: /about.html
 Disallow: /contact.html
 Disallow: /transparenz.html
-Disallow: /mitmachen.html
 
 Sitemap: https://yourdomain.com/sitemap.xml

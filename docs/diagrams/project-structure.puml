@@ -7,11 +7,11 @@ title TSV Rudow Foerderverein - Project Structure
 folder "Repository" {
   folder "html" {
     file "index.html"
-    file "philosophie.html"
-    file "satzung.html"
+    file "transparenz.html"
     file "ansprechpartner.html"
-    file "beitrittsformular.html"
+    file "aktuelles.html"
     file "ergebnisse.html"
+    file "partner.html"
     file "impressum.html"
     folder "css" {
       file "style.css"
