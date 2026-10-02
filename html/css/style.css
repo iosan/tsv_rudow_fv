@@ -10,6 +10,12 @@
     --radius: 14px;
     --shell-max-width: 1100px;
     --shell-gutter: 20px;
+    --content-font-size: 0.96rem;
+    --content-line-height: 1.5;
+    --content-small-size: 0.84rem;
+    --content-tiny-size: 0.72rem;
+    --card-padding: 14px;
+    --compact-table-padding: 8px 8px;
     --shadow-soft: 0 10px 30px rgba(14, 36, 32, 0.08);
     --shadow-strong: 0 18px 46px rgba(14, 36, 32, 0.14);
 }
@@ -348,26 +354,26 @@ header h1 {
 }
 
 .content h2 {
-    font-size: clamp(1.2rem, 1rem + 1vw, 1.9rem);
+    font-size: clamp(1.12rem, 0.96rem + 0.58vw, 1.7rem);
     line-height: 1.2;
     margin-bottom: 12px;
     letter-spacing: -0.01em;
 }
 
 .content h3 {
-    font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+    font-size: clamp(0.96rem, 0.9rem + 0.2vw, 1.08rem);
     margin: 14px 0 8px;
 }
 
 .card-title-compact {
-    font-size: clamp(0.52rem, 0.46rem + 0.12vw, 0.64rem);
-    line-height: 1.1;
+    font-size: clamp(0.96rem, 0.9rem + 0.18vw, 1.08rem);
+    line-height: 1.2;
     white-space: nowrap;
     letter-spacing: -0.01em;
 }
 
 .section-heading-compact {
-    font-size: clamp(1rem, 0.9rem + 0.4vw, 1.3rem);
+    font-size: clamp(1.04rem, 0.96rem + 0.28vw, 1.22rem);
     line-height: 1.2;
     margin-bottom: 8px;
 }
@@ -387,6 +393,8 @@ header h1 {
 .content td,
 .content th {
     color: var(--muted);
+    font-size: var(--content-font-size);
+    line-height: var(--content-line-height);
 }
 
 .content p.section-break {
@@ -658,7 +666,7 @@ header h1 {
 .data-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.96rem;
+    font-size: var(--content-font-size);
     table-layout: fixed;
 }
 
@@ -668,18 +676,18 @@ header h1 {
 }
 
 .compact-table {
-    font-size: 0.96rem;
+    font-size: var(--content-font-size);
 }
 
 .compact-table th,
 .compact-table td {
-    padding: 8px 8px;
+    padding: var(--compact-table-padding);
 }
 
 .standings-table {
     min-width: 440px;
     table-layout: auto;
-    font-size: 0.96rem;
+    font-size: var(--content-font-size);
 }
 
 .standings-table th,
@@ -737,13 +745,13 @@ header h1 {
 
 #live-team-cards .update-card,
 #live-standings-cards .update-card {
-    font-size: 0.96rem;
+    font-size: var(--content-font-size);
 }
 
 #live-team-cards .update-card h3,
 #live-standings-cards .update-card h3 {
     white-space: nowrap;
-    font-size: 0.96rem;
+    font-size: var(--content-font-size);
     line-height: 1.2;
 }
 
@@ -801,7 +809,7 @@ header h1 {
     list-style: none;
     margin: 0;
     padding: 0;
-    font-size: 0.96rem;
+    font-size: var(--content-font-size);
 }
 
 .results-list li {
@@ -811,7 +819,7 @@ header h1 {
 }
 
 #live-team-cards .update-card p {
-    font-size: 0.96rem;
+    font-size: var(--content-font-size);
 }
 
 .result-badge {
@@ -840,7 +848,7 @@ header h1 {
 
 .small-note {
     margin-top: 10px;
-    font-size: 0.84rem;
+    font-size: var(--content-small-size);
     color: #60716d;
 }
 
