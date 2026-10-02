@@ -4,6 +4,16 @@ All notable changes to this project are documented here.
 
 The format is based on Keep a Changelog and the project follows Semantic Versioning.
 
+## [0.1.8] - 2026-10-02
+
+### Fixed
+- Corrected the mobile and tablet teaser-card sizing to keep the gallery aligned with surrounding content blocks.
+- Removed the remaining results-table overflow in narrow viewports by reducing the standings font size and tightening the card layout.
+
+### Improved
+- Kept the team-by-team standings cards readable on small screens without line breaks or overlap.
+- Preserved the responsive design consistency for the landing page and results page across phone and tablet breakpoints.
+
 ## [0.1.7] - 2026-10-02
 
 ### Fixed
