@@ -359,6 +359,10 @@ header h1 {
     margin: 14px 0 8px;
 }
 
+.card-title-compact {
+    font-size: clamp(0.9rem, 0.8rem + 0.25vw, 1.1rem);
+}
+
 .satzung-sections h4 {
     text-align: center;
 }
