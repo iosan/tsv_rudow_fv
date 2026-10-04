@@ -1,0 +1,47 @@
+@startuml
+skinparam shadowing false
+skinparam monochrome false
+skinparam componentStyle rectangle
+
+actor Sender
+participant Mailbox
+participant Allowlist
+participant Validator
+participant Processor
+participant Site
+database Queue
+participant Cleanup
+
+Sender -> Mailbox: Send mail
+Mailbox -> Validator: raw email
+Validator -> Allowlist: check sender
+Allowlist --> Validator: allowed / rejected
+
+alt sender not allowed
+    Validator -> Cleanup: reject and delete without processing
+    Cleanup -> Queue: remove raw mail
+else sender allowed
+    Validator -> Validator: parse subject / about
+    Validator -> Validator: normalize title
+    Validator -> Validator: enforce post|del prefix
+
+    alt valid post command
+        Validator -> Processor: post <title>
+        Processor -> Processor: extract text + image
+        Processor -> Processor: collapse duplicated paragraphs
+        Processor -> Site: save image + insert article
+        Site --> Processor: updated aktuelles.html
+        Processor -> Cleanup: remove raw queue item
+        Cleanup -> Queue: delete processed email
+    else valid delete command
+        Validator -> Processor: del <title>
+        Processor -> Site: remove all matching cards by normalized title
+        Site --> Processor: updated aktuelles.html
+        Processor -> Cleanup: remove raw queue item
+        Cleanup -> Queue: delete processed email
+    else invalid command
+        Validator -> Cleanup: ignore and delete mail
+        Cleanup -> Queue: purge message
+    end
+end
+@enduml
