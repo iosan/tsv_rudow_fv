@@ -82,40 +82,92 @@
             var homeTeam = text(entry.homeTeam, "Heimteam offen");
             var awayTeam = text(entry.awayTeam, "Auswaertsteam offen");
             var fixture = escapeHtml(homeTeam) + " vs. " + escapeHtml(awayTeam);
-            var info = escapeHtml(text(entry.dateLabel, "Datum offen")) + " · " + fixture;
+            var dateInfo = escapeHtml(text(entry.dateLabel, "Datum offen"));
             var scoreInfo = escapeHtml(formatScore(entry));
             var badge = resultBadge(entry);
             var link = entry.matchUrl
                 ? " <a href=\"" + escapeHtml(entry.matchUrl) + "\" target=\"_blank\" rel=\"noopener noreferrer\">Spieldetails</a>"
                 : "";
-            return "<li><strong>" + escapeHtml(text(entry.team, "TSV Rudow")) + "</strong>: " + info + " · " + scoreInfo + badge + link + "</li>";
+            return "<li><strong>" + escapeHtml(text(entry.team, "TSV Rudow")) + "</strong>: " + dateInfo + "<br>" + fixture + "<br>" + scoreInfo + badge + link + "</li>";
         }).join("");
     }
 
-    function renderUpcomingMatches(matches) {
+    function renderUpcomingMatches(matches, teams) {
         var tbody = document.getElementById("live-upcoming-body");
         if (!tbody || !Array.isArray(matches) || matches.length === 0) {
             return;
         }
 
+        var logoByTeam = {};
+        if (Array.isArray(teams)) {
+            teams.forEach(function (team) {
+                if (!team || !team.name) {
+                    return;
+                }
+
+                if (Array.isArray(team.tableRows)) {
+                    team.tableRows.forEach(function (row) {
+                        if (row && row.team && row.logoUrl && !logoByTeam[row.team]) {
+                            logoByTeam[row.team] = String(row.logoUrl);
+                        }
+                    });
+                }
+
+                if (!logoByTeam[team.name] && Array.isArray(team.tableRows)) {
+                    for (var i = 0; i < team.tableRows.length; i += 1) {
+                        var candidate = team.tableRows[i];
+                        if (candidate && candidate.team === team.name && candidate.logoUrl) {
+                            logoByTeam[team.name] = String(candidate.logoUrl);
+                            break;
+                        }
+                    }
+                }
+            });
+        }
+
+        function teamMark(teamName) {
+            var normalizedName = text(teamName, "TSV Rudow");
+            var logoUrl = logoByTeam[normalizedName] || "";
+
+            if (logoUrl) {
+                return "<img class=\"upcoming-team-logo\" src=\"" + escapeHtml(logoUrl) + "\" alt=\"\" title=\"" + escapeHtml(normalizedName) + "\" loading=\"lazy\">";
+            }
+
+            return "<span class=\"upcoming-team-fallback\" title=\"" + escapeHtml(normalizedName) + "\">•</span>";
+        }
+
         tbody.innerHTML = matches.map(function (match) {
             var homeTeam = text(match.homeTeam, "");
             var awayTeam = text(match.awayTeam, "");
-            var meeting;
+            var meetingHome;
+            var meetingAway;
 
             if (homeTeam && awayTeam) {
-                meeting = escapeHtml(homeTeam) + " vs. " + escapeHtml(awayTeam);
+                meetingHome = homeTeam;
+                meetingAway = awayTeam;
             } else if (text(match.location, "") === "Heim") {
-                meeting = escapeHtml(text(match.team, "TSV Rudow")) + " vs. " + escapeHtml(text(match.opponent, "Gegner offen"));
+                meetingHome = text(match.team, "TSV Rudow");
+                meetingAway = text(match.opponent, "Gegner offen");
             } else {
-                meeting = escapeHtml(text(match.opponent, "Gegner offen")) + " vs. " + escapeHtml(text(match.team, "TSV Rudow"));
+                meetingHome = text(match.opponent, "Gegner offen");
+                meetingAway = text(match.team, "TSV Rudow");
             }
+
+            var meetingTitle = escapeHtml(meetingHome + " vs. " + meetingAway);
+            var meeting = [
+                "<span class=\"upcoming-fixture-mark\" title=\"" + meetingTitle + "\">",
+                teamMark(meetingHome),
+                "<span class=\"upcoming-vs\">vs.</span>",
+                teamMark(meetingAway),
+                "<span class=\"sr-only\">" + meetingTitle + "</span>",
+                "</span>"
+            ].join("");
 
             return [
                 "<tr>",
                 "<td>" + escapeHtml(text(match.dateLabel, "Datum offen")) + "</td>",
                 "<td>" + escapeHtml(text(match.team, "TSV Rudow")) + "</td>",
-                "<td>" + meeting + "</td>",
+                "<td><span class=\"upcoming-fixture\">" + meeting + "</span></td>",
                 "</tr>"
             ].join("");
         }).join("");
@@ -159,10 +211,15 @@
             var logoUrl = row && row.logoUrl ? String(row.logoUrl) : "";
 
             if (!logoUrl) {
-                return "<span class=\"standings-team-fallback\" title=\"" + escapeHtml(teamName) + "\">" + escapeHtml(teamName) + "</span>";
+                return "<span class=\"standings-team-mark\"><span class=\"standings-team-fallback\" title=\"" + escapeHtml(teamName) + "\">" + escapeHtml(teamName) + "</span></span>";
             }
 
-            return "<img class=\"standings-team-logo\" src=\"" + escapeHtml(logoUrl) + "\" alt=\"\" title=\"" + escapeHtml(teamName) + "\" loading=\"lazy\">";
+            return [
+                "<span class=\"standings-team-mark\">",
+                "<img class=\"standings-team-logo\" src=\"" + escapeHtml(logoUrl) + "\" alt=\"\" title=\"" + escapeHtml(teamName) + "\" loading=\"lazy\">",
+                "<span class=\"standings-team-name\">" + escapeHtml(teamName) + "</span>",
+                "</span>"
+            ].join("");
         }
 
         container.innerHTML = teams.map(function (team) {
@@ -177,10 +234,6 @@
                         "<td>" + escapeHtml(text(row.rank, "-")) + "</td>",
                         "<td class=\"standings-team-cell\">" + renderTeamMark(row, team.name) + "</td>",
                         "<td>" + escapeHtml(text(row.played, "-")) + "</td>",
-                        "<td>" + escapeHtml(text(row.won, "-")) + "</td>",
-                        "<td>" + escapeHtml(text(row.draw, "-")) + "</td>",
-                        "<td>" + escapeHtml(text(row.lost, "-")) + "</td>",
-                        "<td>" + escapeHtml(text(row.goals, "-")) + "</td>",
                         "<td>" + escapeHtml(text(row.goalDiff, "-")) + "</td>",
                         "<td>" + escapeHtml(text(row.points, "-")) + "</td>",
                         "</tr>"
@@ -192,10 +245,6 @@
                     "<td>" + escapeHtml(text(standing.rank, "-")) + "</td>",
                     "<td class=\"standings-team-cell\">" + renderTeamMark({ team: team.name, logoUrl: team.logoUrl }, team.name) + "</td>",
                     "<td>" + escapeHtml(text(standing.played, "-")) + "</td>",
-                    "<td>" + escapeHtml(text(standing.won, "-")) + "</td>",
-                    "<td>" + escapeHtml(text(standing.draw, "-")) + "</td>",
-                    "<td>" + escapeHtml(text(standing.lost, "-")) + "</td>",
-                    "<td>" + escapeHtml(text(standing.goals, "-")) + "</td>",
                     "<td>" + escapeHtml(text(standing.goalDiff, "-")) + "</td>",
                     "<td>" + escapeHtml(text(standing.points, "-")) + "</td>",
                     "</tr>"
@@ -207,7 +256,7 @@
                 "<h3>" + escapeHtml(text(team.name, "TSV Rudow")) + "</h3>",
                 "<div class=\"table-scroll\">",
                 "<table class=\"data-table standings-table\">",
-                "<thead><tr><th>Pl.</th><th>Team</th><th>Sp.</th><th>G</th><th>U</th><th>V</th><th>Tore</th><th>Diff.</th><th>Pkt.</th></tr></thead>",
+                "<thead><tr><th>Pl.</th><th>Team</th><th>Sp.</th><th>Diff.</th><th>Pkt.</th></tr></thead>",
                 "<tbody>" + bodyHtml + "</tbody>",
                 "</table>",
                 "</div>",
@@ -216,19 +265,12 @@
         }).join("");
     }
 
-    function renderStatus(data) {
+    function renderStatus() {
         var status = document.getElementById("live-data-status");
         if (!status) {
             return;
         }
-
-        var generatedAt = data && data.generatedAt ? new Date(data.generatedAt) : null;
-        if (!generatedAt || Number.isNaN(generatedAt.getTime())) {
-            status.textContent = "Automatische Daten aktiv.";
-            return;
-        }
-
-        status.textContent = "Automatische Daten aktiv. Letzte Aktualisierung: " + generatedAt.toLocaleString("de-DE");
+        status.textContent = "";
     }
 
     function renderFromPayload(payload) {
@@ -238,10 +280,10 @@
 
         renderTableRows(payload.homepage.tableRows);
         renderRecentResults(payload.homepage.recentResults);
-        renderUpcomingMatches(payload.homepage.upcomingMatches);
+        renderUpcomingMatches(payload.homepage.upcomingMatches, payload.teams);
         renderStandingsCards(payload.teams);
         renderTeamCards(payload.teams);
-        renderStatus(payload);
+        renderStatus();
         return true;
     }
 
@@ -264,7 +306,7 @@
         if (!status) {
             return;
         }
-        status.textContent = "Live-Daten konnten nicht geladen werden (Datei-Modus oder Netzwerkblockade).";
+        status.textContent = "";
     }
 
     function loadLiveData() {

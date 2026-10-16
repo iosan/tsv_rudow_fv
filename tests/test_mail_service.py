@@ -40,6 +40,19 @@ class MailServiceTests(unittest.TestCase):
         self.assertTrue(module.is_allowed_sender("Editor@Example.org", {"editor@example.org"}))
         self.assertFalse(module.is_allowed_sender("someone@example.org", {"editor@example.org"}))
 
+    def test_is_allowed_sender_accepts_display_name_aliases(self):
+        self.assertTrue(module.is_allowed_sender("Andreas Schmidt <schmidta1@gmx.de>", {"schmidta1@gmx.de"}))
+        self.assertTrue(module.is_allowed_sender('"Andreas Schmidt" <schmidta1@gmx.de>', {"schmidta1@gmx.de"}))
+        self.assertFalse(module.is_allowed_sender("Andreas Schmidt <schmidta2@gmx.de>", {"schmidta1@gmx.de"}))
+
+    def test_is_valid_image_name_accepts_image_extensions_case_insensitively(self):
+        self.assertTrue(module.is_valid_image_name("example_image.jpg"))
+        self.assertTrue(module.is_valid_image_name("example_image.JPG"))
+        self.assertTrue(module.is_valid_image_name("example_image.PNG"))
+        self.assertTrue(module.is_valid_image_name("example_image.png"))
+        self.assertFalse(module.is_valid_image_name("example_image.txt"))
+        self.assertFalse(module.is_valid_image_name("example_image.pdf"))
+
     def test_extract_message_parts_validates_sender_and_image_for_post_messages(self):
         image_data = base64.b64encode(b"fake-image-bytes")
         raw_message = (
@@ -52,8 +65,8 @@ class MailServiceTests(unittest.TestCase):
             "Content-Type: text/plain; charset=utf-8\r\n\r\n"
             "Hallo Welt\r\n"
             "--boundary123\r\n"
-            "Content-Type: image/png; name=\"post.png\"\r\n"
-            "Content-Disposition: attachment; filename=\"post.png\"\r\n"
+            "Content-Type: image/png; name=\"post.PNG\"\r\n"
+            "Content-Disposition: attachment; filename=\"post.PNG\"\r\n"
             "Content-Transfer-Encoding: base64\r\n\r\n"
             f"{image_data.decode()}\r\n"
             "--boundary123--\r\n"
@@ -63,7 +76,7 @@ class MailServiceTests(unittest.TestCase):
         self.assertEqual(payload["sender"], "Editor@Example.org")
         self.assertEqual(payload["title"], "Test Title")
         self.assertIn("Hallo Welt", payload["text"])
-        self.assertEqual(payload["image_name"], "post.png")
+        self.assertEqual(payload["image_name"], "post.PNG")
         self.assertIn(b"fake-image-bytes", payload["image_bytes"])
 
     def test_extract_message_parts_allows_delete_messages_without_text_or_image(self):
@@ -115,8 +128,8 @@ class MailServiceTests(unittest.TestCase):
             "Content-Type: text/plain; charset=utf-8\r\n\r\n"
             "Hallo Welt\r\n"
             "--boundary123\r\n"
-            "Content-Type: image/png; name=\"post.png\"\r\n"
-            "Content-Disposition: attachment; filename=\"post.png\"\r\n"
+            "Content-Type: image/png; name=\"post.PNG\"\r\n"
+            "Content-Disposition: attachment; filename=\"post.PNG\"\r\n"
             "Content-Transfer-Encoding: base64\r\n\r\n"
             f"{image_data.decode()}\r\n"
             "--boundary123--\r\n"

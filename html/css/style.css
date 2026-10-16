@@ -680,6 +680,7 @@ header h1 {
 
 .compact-table {
     font-size: var(--content-font-size);
+    table-layout: auto;
 }
 
 .compact-table th,
@@ -687,10 +688,155 @@ header h1 {
     padding: var(--compact-table-padding);
 }
 
-.standings-table {
-    min-width: 440px;
+.compact-table th:nth-child(1),
+.compact-table td:nth-child(1) {
+    width: 58%;
+    white-space: nowrap !important;
+    overflow-wrap: normal !important;
+    word-break: keep-all;
+}
+
+.compact-table th:nth-child(2),
+.compact-table td:nth-child(2),
+.compact-table th:nth-child(3),
+.compact-table td:nth-child(3),
+.compact-table th:nth-child(4),
+.compact-table td:nth-child(4) {
+    width: 14%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.live-overview-table {
     table-layout: auto;
-    font-size: var(--content-font-size);
+}
+
+.live-overview-table th:nth-child(1),
+.live-overview-table td:nth-child(1) {
+    width: 58%;
+    white-space: nowrap !important;
+    overflow-wrap: normal !important;
+    word-break: keep-all;
+}
+
+.live-overview-table th:nth-child(2),
+.live-overview-table td:nth-child(2),
+.live-overview-table th:nth-child(3),
+.live-overview-table td:nth-child(3),
+.live-overview-table th:nth-child(4),
+.live-overview-table td:nth-child(4) {
+    width: 14%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.upcoming-table {
+    min-width: 620px;
+    table-layout: fixed;
+}
+
+.upcoming-date-column {
+    width: 24%;
+}
+
+.upcoming-team-column {
+    width: 16%;
+}
+
+.upcoming-fixture-column {
+    width: 60%;
+}
+
+.upcoming-table th,
+.upcoming-table td {
+    vertical-align: middle;
+    padding: 7px 6px;
+}
+
+.table-scroll-upcoming {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.upcoming-table th:nth-child(1),
+.upcoming-table td:nth-child(1) {
+    width: 24%;
+}
+
+.upcoming-table th:nth-child(2),
+.upcoming-table td:nth-child(2) {
+    width: 16%;
+    text-align: center;
+}
+
+.upcoming-table th:nth-child(3),
+.upcoming-table td:nth-child(3) {
+    width: 60%;
+    text-align: center;
+    white-space: nowrap !important;
+    overflow-wrap: normal !important;
+    word-break: keep-all;
+}
+
+.upcoming-fixture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    white-space: nowrap !important;
+    overflow-wrap: normal !important;
+    word-break: keep-all;
+}
+
+.upcoming-fixture-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.upcoming-vs {
+    font-size: 0.82rem;
+    color: #48645d;
+}
+
+.upcoming-team-cell {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.upcoming-team-logo {
+    display: inline-block;
+    width: 1.7rem;
+    height: 1.7rem;
+    box-sizing: border-box;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid #c8dbd4;
+    background: #f5faf8;
+    object-fit: cover;
+    object-position: center;
+    vertical-align: middle;
+}
+
+.upcoming-team-fallback {
+    display: inline-block;
+    width: 1.7rem;
+    height: 1.7rem;
+    line-height: 1.6rem;
+    border-radius: 50%;
+    border: 1px solid #c8dbd4;
+    background: #f5faf8;
+    color: #4e6660;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.standings-table {
+    min-width: 280px;
+    table-layout: auto;
+    font-size: 1rem;
 }
 
 .standings-table th,
@@ -705,16 +851,10 @@ header h1 {
 .standings-table td:nth-child(3),
 .standings-table td:nth-child(4),
 .standings-table td:nth-child(5),
-.standings-table td:nth-child(6),
-.standings-table td:nth-child(8),
-.standings-table td:nth-child(9),
 .standings-table th:first-child,
 .standings-table th:nth-child(3),
 .standings-table th:nth-child(4),
-.standings-table th:nth-child(5),
-.standings-table th:nth-child(6),
-.standings-table th:nth-child(8),
-.standings-table th:nth-child(9) {
+.standings-table th:nth-child(5) {
     text-align: center;
     white-space: nowrap;
 }
@@ -725,17 +865,49 @@ header h1 {
     white-space: nowrap;
 }
 
+.standings-table th:nth-child(1),
+.standings-table td:nth-child(1) {
+    width: 12%;
+}
+
+.standings-table th:nth-child(2),
+.standings-table td:nth-child(2) {
+    width: 52%;
+}
+
+.standings-table th:nth-child(3),
+.standings-table td:nth-child(3),
+.standings-table th:nth-child(4),
+.standings-table td:nth-child(4),
+.standings-table th:nth-child(5),
+.standings-table td:nth-child(5) {
+    width: 12%;
+}
+
 .standings-team-cell {
     text-align: center;
     white-space: nowrap;
 }
 
+.standings-team-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
 .standings-team-logo {
     display: block;
-    width: 1.15rem;
-    height: 1.15rem;
+    width: 2.3rem;
+    height: 2.3rem;
     margin: 0 auto;
     object-fit: contain;
+}
+
+.standings-team-name {
+    font-size: 1rem;
+    line-height: 1.2;
 }
 
 .standings-team-fallback {
@@ -748,13 +920,13 @@ header h1 {
 
 #live-team-cards .update-card,
 #live-standings-cards .update-card {
-    font-size: var(--content-font-size);
+    font-size: 1rem;
 }
 
 #live-team-cards .update-card h3,
 #live-standings-cards .update-card h3 {
     white-space: nowrap;
-    font-size: var(--content-font-size);
+    font-size: 1rem;
     line-height: 1.2;
 }
 
@@ -1019,6 +1191,54 @@ footer a {
         overflow-x: hidden;
     }
 
+    .table-scroll-upcoming {
+        overflow-x: auto;
+    }
+
+    .compact-table {
+        font-size: 0.7rem;
+    }
+
+    .compact-table th,
+    .compact-table td {
+        padding: 4px 3px;
+    }
+
+    .compact-table th:nth-child(1),
+    .compact-table td:nth-child(1) {
+        width: 60%;
+        white-space: nowrap !important;
+        overflow-wrap: normal !important;
+        word-break: keep-all;
+    }
+
+    .compact-table th:nth-child(2),
+    .compact-table td:nth-child(2),
+    .compact-table th:nth-child(3),
+    .compact-table td:nth-child(3),
+    .compact-table th:nth-child(4),
+    .compact-table td:nth-child(4) {
+        width: 13.33%;
+    }
+
+    .live-overview-table th:nth-child(1),
+    .live-overview-table td:nth-child(1) {
+        width: 60%;
+        white-space: nowrap !important;
+        overflow-wrap: normal !important;
+        word-break: keep-all;
+    }
+
+    .live-overview-table th:nth-child(2),
+    .live-overview-table td:nth-child(2),
+    .live-overview-table th:nth-child(3),
+    .live-overview-table td:nth-child(3),
+    .live-overview-table th:nth-child(4),
+    .live-overview-table td:nth-child(4) {
+        width: 13.33%;
+        white-space: nowrap;
+    }
+
     .update-grid {
         grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
     }
@@ -1068,6 +1288,98 @@ footer a {
         min-width: 36px;
         white-space: nowrap;
     }
+
+    #live-standings-cards .standings-table th:nth-child(1),
+    #live-standings-cards .standings-table td:nth-child(1) {
+        width: 12%;
+    }
+
+    #live-standings-cards .standings-table th:nth-child(2),
+    #live-standings-cards .standings-table td:nth-child(2) {
+        width: 58%;
+    }
+
+    #live-standings-cards .standings-table th:nth-child(3),
+    #live-standings-cards .standings-table td:nth-child(3),
+    #live-standings-cards .standings-table th:nth-child(4),
+    #live-standings-cards .standings-table td:nth-child(4),
+    #live-standings-cards .standings-table th:nth-child(5),
+    #live-standings-cards .standings-table td:nth-child(5) {
+        width: 10%;
+    }
+
+    #live-standings-cards .standings-team-logo {
+        width: 1.15rem;
+        height: 1.15rem;
+    }
+
+    #live-standings-cards .standings-team-name {
+        font-size: 0.62rem;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    #live-standings-cards .standings-team-mark {
+        gap: 4px;
+    }
+
+    .table-scroll-upcoming {
+        overflow-x: hidden;
+    }
+
+    .upcoming-table {
+        min-width: 0;
+        width: 100%;
+        table-layout: fixed;
+        font-size: 0.74rem;
+    }
+
+    .upcoming-table th,
+    .upcoming-table td {
+        padding: 5px 4px;
+        overflow-wrap: normal;
+    }
+
+    .upcoming-table th:nth-child(1),
+    .upcoming-table td:nth-child(1) {
+        width: 38%;
+        white-space: nowrap;
+    }
+
+    .upcoming-date-column {
+        width: 38%;
+    }
+
+    .upcoming-table th:nth-child(2),
+    .upcoming-table td:nth-child(2) {
+        width: 18%;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .upcoming-team-column {
+        width: 18%;
+    }
+
+    .upcoming-table th:nth-child(3),
+    .upcoming-table td:nth-child(3) {
+        width: 44%;
+        text-align: center;
+    }
+
+    .upcoming-fixture-column {
+        width: 44%;
+    }
+
+    .upcoming-team-logo,
+    .upcoming-team-fallback {
+        width: 1.45rem;
+        height: 1.45rem;
+    }
+
+    .upcoming-team-fallback {
+        line-height: 1.35rem;
+    }
 }
 
 @media (max-width: 640px) {
@@ -1093,22 +1405,119 @@ footer a {
     .standings-table th,
     .standings-table td {
         padding: 2px 1px;
-        white-space: normal;
-        overflow-wrap: anywhere;
+        white-space: nowrap;
+        overflow-wrap: normal;
+    }
+
+    #live-standings-cards .standings-table th,
+    #live-standings-cards .standings-table td {
+        font-size: 0.56rem;
+        line-height: 1.1;
     }
 
     .standings-table td:nth-child(2),
     .standings-table th:nth-child(2) {
-        white-space: normal;
-        overflow-wrap: anywhere;
+        white-space: nowrap;
+        overflow-wrap: normal;
+    }
+
+    #live-standings-cards .standings-table th:nth-child(1),
+    #live-standings-cards .standings-table td:nth-child(1) {
+        width: 12%;
+    }
+
+    #live-standings-cards .standings-table th:nth-child(2),
+    #live-standings-cards .standings-table td:nth-child(2) {
+        width: 58%;
+    }
+
+    #live-standings-cards .standings-table th:nth-child(3),
+    #live-standings-cards .standings-table td:nth-child(3),
+    #live-standings-cards .standings-table th:nth-child(4),
+    #live-standings-cards .standings-table td:nth-child(4),
+    #live-standings-cards .standings-table th:nth-child(5),
+    #live-standings-cards .standings-table td:nth-child(5) {
+        width: 10%;
     }
 
     .standings-team-fallback {
         font-size: 0.42rem;
     }
 
+    #live-standings-cards .standings-team-logo {
+        width: 1.15rem;
+        height: 1.15rem;
+    }
+
+    #live-standings-cards .standings-team-name {
+        font-size: 0.56rem;
+        white-space: nowrap;
+    }
+
     .table-scroll {
         overflow-x: hidden;
+    }
+
+    .table-scroll-upcoming {
+        overflow-x: hidden;
+    }
+
+    .upcoming-table {
+        min-width: 0;
+        width: 100%;
+        table-layout: fixed;
+        font-size: 0.66rem;
+    }
+
+    .upcoming-table th,
+    .upcoming-table td {
+        padding: 4px 3px;
+        overflow-wrap: normal;
+    }
+
+    .upcoming-table th:nth-child(1),
+    .upcoming-table td:nth-child(1) {
+        width: 40%;
+        white-space: nowrap;
+    }
+
+    .upcoming-date-column {
+        width: 40%;
+    }
+
+    .upcoming-table th:nth-child(2),
+    .upcoming-table td:nth-child(2) {
+        width: 16%;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    .upcoming-team-column {
+        width: 16%;
+    }
+
+    .upcoming-table th:nth-child(3),
+    .upcoming-table td:nth-child(3) {
+        width: 44%;
+        text-align: center;
+    }
+
+    .upcoming-fixture-column {
+        width: 44%;
+    }
+
+    .upcoming-team-logo,
+    .upcoming-team-fallback {
+        width: 1.3rem;
+        height: 1.3rem;
+    }
+
+    .upcoming-team-fallback {
+        line-height: 1.2rem;
+    }
+
+    .upcoming-vs {
+        font-size: 0.68rem;
     }
 
     .top-nav {

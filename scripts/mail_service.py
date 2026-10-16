@@ -3,9 +3,25 @@ import re
 from datetime import datetime
 from email import policy
 from email.parser import BytesParser
+from email.utils import parseaddr
 
 
 ALLOWED_TEXT_TAGS = {"p", "br", "strong", "b", "em", "i", "ul", "ol", "li", "a", "span", "blockquote"}
+
+
+def extract_email_address(value: str | None) -> str:
+    """Extract the actual email address from a From header value like 'Name <user@example.org>'."""
+    if not value:
+        return ""
+
+    cleaned = value.strip()
+    if not cleaned:
+        return ""
+
+    parsed_name, parsed_email = parseaddr(cleaned)
+    if parsed_email:
+        return parsed_email.strip().lower()
+    return cleaned.lower()
 
 
 def load_allowlist_from_text(text: str) -> set[str]:
@@ -18,8 +34,8 @@ def load_allowlist_from_text(text: str) -> set[str]:
         line = raw_line.strip()
         if not line or line.startswith("#"):
             continue
-        allowlist.add(line.lower())
-    return allowlist
+        allowlist.add(extract_email_address(line))
+    return {value for value in allowlist if value}
 
 
 def load_allowlist(path: str) -> set[str]:
@@ -28,13 +44,29 @@ def load_allowlist(path: str) -> set[str]:
         return load_allowlist_from_text(handle.read())
 
 
+def is_valid_image_name(name: str | None) -> bool:
+    """Accept valid image extensions regardless of case, but reject non-image file types."""
+    if not name:
+        return False
+
+    filename = str(name).strip()
+    if not filename:
+        return False
+
+    suffix = filename.rsplit(".", 1)[-1].upper() if "." in filename else ""
+    return suffix in {"PNG", "JPG", "JPEG", "GIF", "WEBP", "BMP", "TIFF"}
+
+
 def is_allowed_sender(sender: str, allowlist: set[str] | list[str] | None) -> bool:
     """Return True when the sender matches an approved email address."""
     if not sender or not allowlist:
         return False
 
-    normalized_sender = sender.strip().lower()
-    allowed = {value.strip().lower() for value in allowlist}
+    normalized_sender = extract_email_address(sender)
+    if not normalized_sender:
+        return False
+
+    allowed = {extract_email_address(value) for value in allowlist}
     return normalized_sender in allowed
 
 
@@ -208,6 +240,8 @@ def extract_message_parts(raw_message: str | bytes, allowlist: set[str] | list[s
         raise ValueError("No text content found in the message.")
     if not image_bytes:
         raise ValueError("No image attachment found in the message.")
+    if not is_valid_image_name(image_name):
+        raise ValueError(f"Invalid image file extension for upload: {image_name}")
 
     return {
         "sender": sender,

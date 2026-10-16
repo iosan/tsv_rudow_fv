@@ -7,6 +7,7 @@ import sys
 from datetime import datetime, timezone
 from email import policy
 from email.parser import BytesParser
+from email.utils import parseaddr
 from pathlib import Path
 
 BASE_DIR = Path('/opt/aktuelles-mail-service')
@@ -17,13 +18,27 @@ SITE_IMAGES = SITE_ROOT / 'html' / 'images'
 INSERT_MARKER = '<div class="upload-parent-box">'
 
 
+def extract_email_address(value: str | None) -> str:
+    if not value:
+        return ''
+    cleaned = value.strip()
+    if not cleaned:
+        return ''
+    parsed_name, parsed_email = parseaddr(cleaned)
+    if parsed_email:
+        return parsed_email.strip().lower()
+    return cleaned.lower()
+
+
 def load_allowlist(path: Path):
     allowed = set()
     if path.exists():
         for line in path.read_text(encoding='utf-8').splitlines():
             cleaned = line.strip()
             if cleaned and not cleaned.startswith('#'):
-                allowed.add(cleaned.lower())
+                email = extract_email_address(cleaned)
+                if email:
+                    allowed.add(email)
     return allowed
 
 
@@ -66,6 +81,16 @@ def parse_title_command(about_field: str | None):
     if delete_title:
         return ('delete', delete_title)
     return None
+
+
+def is_valid_image_name(name: str | None) -> bool:
+    if not name:
+        return False
+    filename = str(name).strip()
+    if not filename:
+        return False
+    suffix = filename.rsplit('.', 1)[-1].upper() if '.' in filename else ''
+    return suffix in {'PNG', 'JPG', 'JPEG', 'GIF', 'WEBP', 'BMP', 'TIFF'}
 
 
 def safe_name(name: str) -> str:
@@ -151,7 +176,8 @@ def process_raw_message(raw_file: Path):
     message = BytesParser(policy=policy.default).parsebytes(raw_email)
     sender = message.get('From', '').strip()
     allowlist = load_allowlist(BASE_DIR / 'config' / 'allowlist.txt')
-    if sender.lower() not in allowlist:
+    sender_email = extract_email_address(sender)
+    if sender_email not in allowlist:
         raw_file.unlink(missing_ok=True)
         raise PermissionError(f'Sender not allowed: {sender}')
 
@@ -196,6 +222,9 @@ def process_raw_message(raw_file: Path):
     if not text_parts or not image_bytes or not image_name:
         raw_file.unlink(missing_ok=True)
         raise ValueError('Ignored mail: missing valid text and image content')
+    if not is_valid_image_name(image_name):
+        raw_file.unlink(missing_ok=True)
+        raise ValueError(f'Ignored mail: invalid image file extension for {image_name}')
 
     text = sanitize_text('\n'.join(text_parts))
     if not text:

@@ -118,7 +118,7 @@ def test_publish_module_processes_raw_post_email(tmp_path, monkeypatch):
     msg["Subject"] = "post Mock Test Title"
     msg.attach(MIMEText("This is the body text for the post.", "plain", "utf-8"))
     image = MIMEImage(b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x02\x00\x00\x00\x90wS\xde\x00\x00\x00\x0cIDATx\x9cc``\x00\x00\x00\x02\x00\x01\xe5\x27\xd8\xcf\x00\x00\x00\x00IEND\xaeB`\x82", _subtype="png")
-    image.add_header("Content-Disposition", "attachment", filename="mock-image.png")
+    image.add_header("Content-Disposition", "attachment", filename="mock-image.PNG")
     msg.attach(image)
 
     raw_file = storage_dir / "raw-test.eml"

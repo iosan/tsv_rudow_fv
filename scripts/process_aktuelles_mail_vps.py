@@ -7,6 +7,7 @@ import subprocess
 import sys
 from email import policy
 from email.parser import BytesParser
+from email.utils import parseaddr
 from pathlib import Path
 
 ALLOWLIST_PATH = Path('/opt/aktuelles-mail-service/config/allowlist.txt')
@@ -14,6 +15,18 @@ INCOMING_DIR = Path('/opt/aktuelles-mail-service/storage')
 IMAGES_DIR = INCOMING_DIR / 'images'
 LOG_DIR = Path('/opt/aktuelles-mail-service/logs')
 SITE_HTML = Path('/var/www/tsv_rudow_fv/html/aktuelles.html')
+
+
+def extract_email_address(value: str | None) -> str:
+    if not value:
+        return ''
+    cleaned = value.strip()
+    if not cleaned:
+        return ''
+    parsed_name, parsed_email = parseaddr(cleaned)
+    if parsed_email:
+        return parsed_email.strip().lower()
+    return cleaned.lower()
 
 
 def load_allowlist(path: Path):
@@ -24,7 +37,9 @@ def load_allowlist(path: Path):
         cleaned = line.strip()
         if not cleaned or cleaned.startswith('#'):
             continue
-        allowed.add(cleaned.lower())
+        email = extract_email_address(cleaned)
+        if email:
+            allowed.add(email)
     return allowed
 
 
@@ -69,10 +84,23 @@ def parse_title_command(about_field: str | None):
     return None
 
 
+def is_valid_image_name(name: str | None) -> bool:
+    if not name:
+        return False
+    filename = str(name).strip()
+    if not filename:
+        return False
+    suffix = filename.rsplit('.', 1)[-1].upper() if '.' in filename else ''
+    return suffix in {'PNG', 'JPG', 'JPEG', 'GIF', 'WEBP', 'BMP', 'TIFF'}
+
+
 def is_allowed(sender: str, allowlist: set[str]) -> bool:
     if not sender:
         return False
-    return sender.strip().lower() in allowlist
+    sender_email = extract_email_address(sender)
+    if not sender_email:
+        return False
+    return sender_email in {extract_email_address(value) for value in allowlist}
 
 
 def collapse_repeated_text_block(value: str) -> str:
@@ -228,6 +256,9 @@ def main() -> int:
     image_name, image_data = extract_image(message)
     if not text or not image_name or not image_data:
         print('Rejected: missing text or image for post command', file=sys.stderr)
+        return 1
+    if not is_valid_image_name(image_name):
+        print(f'Rejected: invalid image file extension for {image_name}', file=sys.stderr)
         return 1
 
     image_filename = f'{message_hash}-{safe_name(image_name)}'

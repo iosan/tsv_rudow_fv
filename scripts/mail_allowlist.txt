@@ -5,3 +5,4 @@
 editor@example.org
 kontakt@verein.de
 info@tsvrudow.berlin
+Andreas Schmidt <schmidta1@gmx.de>
