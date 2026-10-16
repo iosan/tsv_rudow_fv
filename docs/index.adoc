@@ -1,5 +1,5 @@
 = TSV Rudow Foerderverein Website - Project Documentation
-v0.1.1, 2026-08-24
+v0.1.9, 2026-10-04
 :toc: left
 :toclevels: 3
 :sectnums:
@@ -19,7 +19,7 @@ Primary navigation and content architecture are currently centered on five core 
 . Aktuelles
 . Ergebnisse
 
-The current implementation reflects the renamed transparency page, the merged membership/contact page, the example upload page in Aktuelles, and the live data results page in Ergebnisse.
+The current implementation reflects the renamed transparency page, the merged membership/contact page, the example upload page in Aktuelles, the live data results page in Ergebnisse, and the mail-driven content workflow used for post and delete commands.
 == Architecture Principles
 
 === 1. Content-first information architecture
@@ -43,6 +43,12 @@ The content model is topic-based and mirrors the migrated Foerderverein source m
 - keyboard-focus-visible navigation and gallery links
 - responsive layout behavior for desktop/tablet/mobile
 - reduced-motion support via `prefers-reduced-motion`
+
+=== 5. Mail-powered publishing workflow
+
+- trusted email senders can publish or delete content via `post <title>` and `del <title>` commands
+- the parser normalizes titles and strips duplicated text before inserting content into the static page
+- successful processing removes raw queue files and leaves the static site ready to serve
 
 == Repository Structure
 

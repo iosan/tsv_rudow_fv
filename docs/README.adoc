@@ -1,7 +1,7 @@
 = TSV Rudow Foerderverein Documentation
 :toc: left
 
-Current docs baseline: v0.1.1 (2026-08-24)
+Current docs baseline: v0.1.9 (2026-10-04)
 
 == Documentation Index
 
@@ -14,6 +14,8 @@ This folder contains technical and editorial documentation for the TSV Rudow Foe
 * link:theming.adoc[Theming Notes]
 * link:deployment.adoc[Deployment Guide]
 * link:responsive-design.adoc[Responsive Design]
+* link:spec/mail_service.md[Mail Service Specification]
+* link:spec/mail_server_setup.md[Mail Server Setup]
 
 === Editorial Source Content
 
@@ -26,6 +28,10 @@ Use the files in `docs/content/foerderverein/` as the canonical source for migra
 PlantUML sources: `docs/diagrams/`
 
 Rendered diagrams: `docs/images/`
+
+Current diagram set includes the core site architecture and the email publishing workflow:
+
+* `mail-workflow.puml` – approves trusted senders, parses `post`/`del` commands, updates the site, and clears the queue
 
 === Build Shortcuts
 

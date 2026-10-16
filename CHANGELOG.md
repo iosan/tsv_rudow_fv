@@ -4,6 +4,20 @@ All notable changes to this project are documented here.
 
 The format is based on Keep a Changelog and the project follows Semantic Versioning.
 
+## [0.1.9] - 2026-10-04
+
+### Added
+- Mail-driven Aktuelles publishing workflow documentation for the VPS-based post and delete pipeline.
+- PlantUML mail workflow diagram to document the allowlist, parsing, publishing, and queue-cleanup flow.
+
+### Fixed
+- Prevented duplicated paragraphs from being inserted twice when the same email body text is repeated in a single inbound mail.
+- Hardened the validation path for allowlisted mail senders and normalized title matching before post/delete processing.
+
+### Improved
+- Kept the deployment docs aligned with the actual Ubuntu + nginx + Python mail automation setup used on the live server.
+- Documented the queue cleanup and image permission rules required for a reliable static-site publishing workflow.
+
 ## [0.1.8] - 2026-10-02
 
 ### Fixed

@@ -1,0 +1,8 @@
+# Allowlisted mail senders for the Aktuelles content workflow.
+# One address per line. Empty lines and comments are ignored.
+# Replace these sample senders with the real trusted addresses before deployment.
+
+editor@example.org
+kontakt@verein.de
+info@tsvrudow.berlin
+Andreas Schmidt <schmidta1@gmx.de>

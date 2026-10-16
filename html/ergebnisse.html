@@ -99,22 +99,29 @@
 
                     <article class="update-card update-card-wide">
                         <h3 class="card-title-compact">Kommende Spieltage</h3>
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Datum</th>
-                                    <th>Team</th>
-                                    <th>Begegnung</th>
-                                </tr>
-                            </thead>
-                            <tbody id="live-upcoming-body">
-                                <tr>
-                                    <td>-</td>
-                                    <td>TSV Rudow</td>
-                                    <td>Keine kommenden Spiele.</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-scroll table-scroll-upcoming">
+                            <table class="data-table upcoming-table">
+                                <colgroup>
+                                    <col class="upcoming-date-column">
+                                    <col class="upcoming-team-column">
+                                    <col class="upcoming-fixture-column">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>Datum</th>
+                                        <th>Team</th>
+                                        <th>Begegnung</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="live-upcoming-body">
+                                    <tr>
+                                        <td>-</td>
+                                        <td>TSV Rudow</td>
+                                        <td><span class="upcoming-fixture-mark" title="TSV Rudow vs. Gegner offen"><span class="upcoming-team-fallback" title="TSV Rudow">•</span><span class="upcoming-vs">vs.</span><span class="upcoming-team-fallback" title="Gegner offen">•</span></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </article>
                 </div>
             </section>
@@ -131,10 +138,6 @@
                                         <th>Pl.</th>
                                         <th>Team</th>
                                         <th>Sp.</th>
-                                        <th>G</th>
-                                        <th>U</th>
-                                        <th>V</th>
-                                        <th>Tore</th>
                                         <th>Diff.</th>
                                         <th>Pkt.</th>
                                     </tr>
@@ -143,10 +146,6 @@
                                     <tr>
                                         <td>-</td>
                                         <td>TSV Rudow</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
                                         <td>-</td>
                                         <td>-</td>
                                         <td>-</td>
